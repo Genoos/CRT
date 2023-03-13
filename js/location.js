@@ -6,6 +6,8 @@ function isValidLocation(event) {
     /**
      * Ajax code here
      */
+    localStorage.setItem("city", city_name)
+    location.href = 'index.html'
 }
 
 function displayNames(value) {
