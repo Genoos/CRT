@@ -112,6 +112,11 @@
     }
 }
 
+.box-img {
+    width: 100px;
+    height: 250px;
+}
+
 .hero-header {
     background: url(../img/hero.jpg) top right no-repeat;
     background-size: cover;
