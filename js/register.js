@@ -1,17 +1,16 @@
 
 
-function fetchData(data) {
+function PostData(data) {
     console.log(data)
     /**
      * Ajax code here
      */
-    localStorage.setItem("username", data["username"])
-    location.href = "home.html"
+    // location.href = "login.html"
 }
 
 
 function submit() {
-    const form = document.forms['login-form']
+    const form = document.forms['register-form']
     const formData = new FormData(form)
     var data = {}
     for (const [k, v] of formData.entries()) {
@@ -20,11 +19,11 @@ function submit() {
     /**
      * validate here 
      */ 
-    fetchData(data)
+    PostData(data)
 }
 
 
-const button = document.querySelector("#submitlogin")
+const button = document.querySelector("#submitRegister")
 
 button.addEventListener('click', submit) 
 
