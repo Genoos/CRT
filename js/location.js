@@ -7,7 +7,7 @@ function isValidLocation(event) {
      * Ajax code here
      */
     localStorage.setItem("city", city_name)
-    location.href = 'index.html'
+    location.href = 'home.html'
 }
 
 function displayNames(value) {
