@@ -5,12 +5,13 @@ function fetchData(data) {
     /**
      * Ajax code here
      */
-    localStorage.setItem("username", "Sandeep")
+    localStorage.setItem("username", data["username"])
     location.href = "home.html"
 }
 
 
 function submit() {
+    console.log(1)
     const form = document.forms['login-form']
     const formData = new FormData(form)
     var data = {}
@@ -24,6 +25,8 @@ function submit() {
 }
 
 
-const button = document.querySelector("#submitlocation")
+const button = document.querySelector("#submitlogin")
 
 button.addEventListener('click', submit) 
+
+window.onload = () => localStorage.clear()
