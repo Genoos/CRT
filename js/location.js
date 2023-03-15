@@ -25,6 +25,7 @@ function isValidLocation(event) {
 
 function displayNames(value) {
     input_bar.value = value
+    localStorage.setItem("location",`${value}`)
     removeElements()
 }
 
