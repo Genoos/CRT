@@ -28,7 +28,7 @@
 
     <!-- Template Stylesheet -->
     <link href="css/style.css" rel="stylesheet" />
-    <link rel="stylesheet" href="css/location.css" />
+    <link href="css/mystyle.css" rel="stylesheet" />
 </head>
 
 <body>
@@ -82,8 +82,8 @@
             <div class="navbar-nav ms-auto py-0">
                 <a href="home.html" class="nav-item nav-link">Home</a>
                 <a href="about.html" class="nav-item nav-link">About</a>
+                <a href="login.html" id="login-logout" class="nav-item nav-link">Login</a>
                 <span id="n-user-name" class="nav-item nav-link"></span>
-
                 <!-- <a href="service.html" class="nav-item nav-link">Service</a> -->
                 <!-- <a href="product.html" class="nav-item nav-link">Product</a> -->
                 <div class="nav-item dropdown">
@@ -98,89 +98,203 @@
                         <a href="detail.html" class="dropdown-item">Blog Detail</a> -->
                     </div>
                 </div>
-                <a href="gallery.html"
-                    class="nav-item nav-link active nav-location bg-primary text-dark px-5 ms-lg-5">Book Now <i class="bi bi-arrow-right"></i></a>
+                <a href="gallery.html" class="nav-item nav-link nav-contact bg-primary text-white px-5 ms-lg-5">Book Now <i class="bi bi-arrow-right"></i></a>
             </div>
         </div>
     </nav>
     <!-- Navbar End -->
 
-    <!-- Contact Start -->
-    <div class="container-fluid pt-5">
+    <!-- 6-seater Team Start -->
+    <div class="container-fluid py-5">
         <div class="container">
             <div class="border-start border-5 border-primary ps-5 mb-5" style="max-width: 600px">
-                <h6 class="text-primary text-uppercase">Please Login</h6>
-                <h1 class="display-5 text-uppercase mb-0">Enter Your Details</h1>
+                <h3 class="text-primary text-uppercase">6-seater Vehicles</h3>
+                <!-- <h6 class="text-primary text-uppercase">6-seater Vehicles</h6> -->
+                <!-- <h1 class="display-5 text-uppercase mb-0">Vehicle for rent</h1> -->
             </div>
-            <div class="row g-5">
-                <div class="col-lg-3"></div>
-                <div class="col-lg-6">
-                    <form name="register-form">
-                        <div class="row g-3">
-                            <div class="col-12">
-                                <input type="text" id="username" name="username"
-                                    class="form-control bg-light border-0 px-4 city" placeholder="Full name"
-                                    style="height: 55px" />
-                                <input type="email" id="email" name="email"
-                                    class="form-control bg-light border-0 px-4 mt-4 city" placeholder="Email"
-                                    style="height: 55px" />
-                                <input type="number" id="phone" name="phone"
-                                    class="form-control bg-light border-0 px-4 mt-4 city" placeholder="Phone No"
-                                    style="height: 55px" />
-                                <input type="password" id="passwd" name="passwd"
-                                    class="form-control bg-light border-0 px-4 mt-4 city" placeholder="Password"
-                                    style="height: 55px" />
-                                <input type="password" id="cpasswd" name="cpasswd"
-                                    class="form-control bg-light border-0 px-4 mt-4 city" placeholder="Confirm Password"
-                                    style="height: 55px" />
-                            </div>
-                            <div class="col-12">
-                                <input class="btn btn-primary w-100 py-3 mt-3" value="Register" id="submitRegister" />
-                            </div>
+            <div class="owl-carousel product-carousel" id="6-seater">
+                <div class="pb-5">
+                    <div class="product-item position-relative bg-light d-flex flex-column text-center">
+                        <img class="img-fluid mb-4 box-img" src="img/product-1.png" alt="" />
+                        <h6 class="text-uppercase">Suzuki Swift</h6>
+                        <h5 class="text-primary mb-0">$199.00</h5>
+                        <div class="btn-action d-flex justify-content-center">
+                            <a class="btn btn-primary py-2 px-3" href=""><i class="bi bi-eye"></i></a>
                         </div>
-                    </form>
-                    <div>
-                        <center>
-                            <a href="login.html">Goto Login</a>
-                        </center>
                     </div>
                 </div>
-                <div class="col-lg-3"></div>
-                <!-- <div class="col-lg-5">
-                    <div class="bg-light mb-5 p-5">
-                        <div class="d-flex align-items-center mb-2">
-                            <i class="bi bi-geo-alt fs-1 text-primary me-3"></i>
-                            <div class="text-start">
-                                <h6 class="text-uppercase mb-1">Our Office</h6>
-                                <span>123 Street, New York, USA</span>
-                            </div>
+                <div class="pb-5">
+                    <div class="product-item position-relative bg-light d-flex flex-column text-center">
+                        <img class="img-fluid mb-4 box-img" src="img/product-2.png" alt="" />
+                        <h6 class="text-uppercase">Suderia Ferrari</h6>
+                        <h5 class="text-primary mb-0">$199.00</h5>
+                        <div class="btn-action d-flex justify-content-center">
+                            <a class="btn btn-primary py-2 px-3" href=""><i class="bi bi-eye"></i></a>
                         </div>
-                        <div class="d-flex align-items-center mb-2">
-                            <i class="bi bi-envelope-open fs-1 text-primary me-3"></i>
-                            <div class="text-start">
-                                <h6 class="text-uppercase mb-1">Email Us</h6>
-                                <span>info@example.com</span>
-                            </div>
+                    </div>
+                </div>
+                <div class="pb-5">
+                    <div class="product-item position-relative bg-light d-flex flex-column text-center">
+                        <img class="img-fluid mb-4 box-img" src="img/product-3.png" alt="" />
+                        <h6 class="text-uppercase">Mercedes AMG One</h6>
+                        <h5 class="text-primary mb-0">$199.00</h5>
+                        <div class="btn-action d-flex justify-content-center">
+                            <a class="btn btn-primary py-2 px-3" href=""><i class="bi bi-eye"></i></a>
                         </div>
-                        <div class="d-flex align-items-center mb-4">
-                            <i class="bi bi-phone-vibrate fs-1 text-primary me-3"></i>
-                            <div class="text-start">
-                                <h6 class="text-uppercase mb-1">Call Us</h6>
-                                <span>+012 345 6789</span>
-                            </div>
+                    </div>
+                </div>
+                <div class="pb-5">
+                    <div class="product-item position-relative bg-light d-flex flex-column text-center">
+                        <img class="img-fluid mb-4 box-img" src="img/product-4.png" alt="" />
+                        <h6 class="text-uppercase">Honda Civic-R</h6>
+                        <h5 class="text-primary mb-0">$199.00</h5>
+                        <div class="btn-action d-flex justify-content-center">
+                            <a class="btn btn-primary py-2 px-3" href=""><i class="bi bi-eye"></i></a>
                         </div>
-                        <div>
-                            <iframe class="position-relative w-100"
-                                src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3001156.4288297426!2d-78.01371936852176!3d42.72876761954724!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x4ccc4bf0f123a5a9%3A0xddcfc6c1de189567!2sNew%20York%2C%20USA!5e0!3m2!1sen!2sbd!4v1603794290143!5m2!1sen!2sbd"
-                                frameborder="0" style="height: 205px; border:0;" allowfullscreen="" aria-hidden="false"
-                                tabindex="0"></iframe>
+                    </div>
+                </div>
+                <div class="pb-5">
+                    <div class="product-item position-relative bg-light d-flex flex-column text-center">
+                        <img class="img-fluid mb-4 box-img" src="img/product-2.png" alt="" />
+                        <h6 class="text-uppercase">Quality Pet Foods</h6>
+                        <h5 class="text-primary mb-0">$199.00</h5>
+                        <div class="btn-action d-flex justify-content-center">
+                            <a class="btn btn-primary py-2 px-3" href=""><i class="bi bi-eye"></i></a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <!-- 6-seater Team End -->
+
+    <!-- 4-seater Team Start -->
+    <div class="container-fluid py-5">
+        <div class="container">
+            <div class="border-start border-5 border-primary ps-5 mb-5" style="max-width: 600px">
+                <h3 class="text-primary text-uppercase">4-seater Vehicles</h3>
+                <!-- <h6 class="text-primary text-uppercase">4-seater Vehicles</h6> -->
+                <!-- <h1 class="display-5 text-uppercase mb-0">Vehicle for rent</h1> -->
+            </div>
+            <div class="owl-carousel product-carousel" id="4-seater">
+                <div class="pb-5">
+                    <div class="product-item position-relative bg-light d-flex flex-column text-center">
+                        <img class="img-fluid mb-4 box-img" src="img/product-1.png" alt="" />
+                        <h6 class="text-uppercase">Suzuki Swift</h6>
+                        <h5 class="text-primary mb-0">$199.00</h5>
+                        <div class="btn-action d-flex justify-content-center">
+                            <a class="btn btn-primary py-2 px-3" href=""><i class="bi bi-eye"></i></a>
+                        </div>
+                    </div>
+                </div>
+                <div class="pb-5">
+                    <div class="product-item position-relative bg-light d-flex flex-column text-center">
+                        <img class="img-fluid mb-4 box-img" src="img/product-2.png" alt="" />
+                        <h6 class="text-uppercase">Suderia Ferrari</h6>
+                        <h5 class="text-primary mb-0">$199.00</h5>
+                        <div class="btn-action d-flex justify-content-center">
+                            <a class="btn btn-primary py-2 px-3" href=""><i class="bi bi-eye"></i></a>
+                        </div>
+                    </div>
+                </div>
+                <div class="pb-5">
+                    <div class="product-item position-relative bg-light d-flex flex-column text-center">
+                        <img class="img-fluid mb-4 box-img" src="img/product-3.png" alt="" />
+                        <h6 class="text-uppercase">Mercedes AMG One</h6>
+                        <h5 class="text-primary mb-0">$199.00</h5>
+                        <div class="btn-action d-flex justify-content-center">
+                            <a class="btn btn-primary py-2 px-3" href=""><i class="bi bi-eye"></i></a>
+                        </div>
+                    </div>
+                </div>
+                <div class="pb-5">
+                    <div class="product-item position-relative bg-light d-flex flex-column text-center">
+                        <img class="img-fluid mb-4 box-img" src="img/product-4.png" alt="" />
+                        <h6 class="text-uppercase">Honda Civic-R</h6>
+                        <h5 class="text-primary mb-0">$199.00</h5>
+                        <div class="btn-action d-flex justify-content-center">
+                            <a class="btn btn-primary py-2 px-3" href=""><i class="bi bi-eye"></i></a>
+                        </div>
+                    </div>
+                </div>
+                <div class="pb-5">
+                    <div class="product-item position-relative bg-light d-flex flex-column text-center">
+                        <img class="img-fluid mb-4 box-img" src="img/product-2.png" alt="" />
+                        <h6 class="text-uppercase">Quality Pet Foods</h6>
+                        <h5 class="text-primary mb-0">$199.00</h5>
+                        <div class="btn-action d-flex justify-content-center">
+                            <a class="btn btn-primary py-2 px-3" href=""><i class="bi bi-eye"></i></a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <!-- 4-seater Team End -->
+
+    <!-- 2-seater Team Start -->
+    <div class="container-fluid py-5">
+        <div class="container">
+            <div class="border-start border-5 border-primary ps-5 mb-5" style="max-width: 600px">
+                <h3 class="text-primary text-uppercase">2-seater Vehicles</h3>
+                <!-- <h6 class="text-primary text-uppercase">Vehicles</h6> -->
+                <!-- <h1 class="display-5 text-uppercase mb-0">Vehicle for rent</h1> -->
+            </div>
+            <div class="owl-carousel product-carousel" id="2-seater">
+                <div class="pb-5">
+                    <div class="product-item position-relative bg-light d-flex flex-column text-center">
+                        <img class="img-fluid mb-4 box-img" src="img/product-1.png" alt="" />
+                        <h6 class="text-uppercase">Suzuki Swift</h6>
+                        <h5 class="text-primary mb-0">$199.00</h5>
+                        <div class="btn-action d-flex justify-content-center">
+                            <a class="btn btn-primary py-2 px-3" href=""><i class="bi bi-eye"></i></a>
+                        </div>
+                    </div>
+                </div>
+                <!-- <div class="pb-5">
+                    <div class="product-item position-relative bg-light d-flex flex-column text-center">
+                        <img class="img-fluid mb-4 box-img" src="img/product-2.png" alt="" />
+                        <h6 class="text-uppercase">Suderia Ferrari</h6>
+                        <h5 class="text-primary mb-0">$199.00</h5>
+                        <div class="btn-action d-flex justify-content-center">
+                            <a class="btn btn-primary py-2 px-3" href=""><i class="bi bi-eye"></i></a>
+                        </div>
+                    </div>
+                </div>
+                <div class="pb-5">
+                    <div class="product-item position-relative bg-light d-flex flex-column text-center">
+                        <img class="img-fluid mb-4 box-img" src="img/product-3.png" alt="" />
+                        <h6 class="text-uppercase">Mercedes AMG One</h6>
+                        <h5 class="text-primary mb-0">$199.00</h5>
+                        <div class="btn-action d-flex justify-content-center">
+                            <a class="btn btn-primary py-2 px-3" href=""><i class="bi bi-eye"></i></a>
+                        </div>
+                    </div>
+                </div>
+                <div class="pb-5">
+                    <div class="product-item position-relative bg-light d-flex flex-column text-center">
+                        <img class="img-fluid mb-4 box-img" src="img/product-4.png" alt="" />
+                        <h6 class="text-uppercase">Honda Civic-R</h6>
+                        <h5 class="text-primary mb-0">$199.00</h5>
+                        <div class="btn-action d-flex justify-content-center">
+                            <a class="btn btn-primary py-2 px-3" href=""><i class="bi bi-eye"></i></a>
+                        </div>
+                    </div>
+                </div>
+                <div class="pb-5">
+                    <div class="product-item position-relative bg-light d-flex flex-column text-center">
+                        <img class="img-fluid mb-4 box-img" src="img/product-2.png" alt="" />
+                        <h6 class="text-uppercase">Quality Pet Foods</h6>
+                        <h5 class="text-primary mb-0">$199.00</h5>
+                        <div class="btn-action d-flex justify-content-center">
+                            <a class="btn btn-primary py-2 px-3" href=""><i class="bi bi-eye"></i></a>
                         </div>
                     </div>
                 </div> -->
             </div>
         </div>
     </div>
-    <!-- Contact End -->
+    <!-- 2-seater Team End -->
 
     <!-- Footer Start -->
     <div class="container-fluid bg-light mt-5 py-5">
@@ -307,7 +421,7 @@
 
     <!-- Template Javascript -->
     <script src="js/header.js"></script>
-    <script src="js/register.js"></script>
+    <script src="js/gallery.js"></script>
     <script src="js/main.js"></script>
 </body>
 
