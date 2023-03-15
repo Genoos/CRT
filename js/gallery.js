@@ -110,9 +110,9 @@ function onLoad() {
         cars[car.type].push(car)
     }
     console.log(cars)
-    loadCarousel("2-seater")
-    loadCarousel("4-seater")
-    loadCarousel("6-seater")
+    // loadCarousel("2-seater")
+    // loadCarousel("4-seater")
+    // loadCarousel("6-seater")
 }
 
 function loadCarousel(id) {
