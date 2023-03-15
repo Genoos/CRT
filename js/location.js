@@ -1,12 +1,13 @@
-button_list=document.getElementsByClassName("location_button");
-for(let ind=0;ind<button_list.length;ind++){
+button_list = document.getElementsByClassName("location_button");
+for (let ind = 0; ind < button_list.length; ind++) {
     const location_button = button_list[ind]
-    location_button.addEventListener("click", function(event) {
-        location_value=location_button.getAttribute('Value');
-        localStorage.setItem('location',`${location_value}`)
-        var new_loc=localStorage.getItem('location')
-        let user_loc=document.getElementById("user_location")
-        user_loc.innerText=new_loc
+    location_button.addEventListener("click", function (event) {
+        location_value = location_button.getAttribute('Value');
+        localStorage.setItem('location', `${location_value}`)
+        var new_loc = localStorage.getItem('location')
+        let user_loc = document.getElementById("user_location")
+        user_loc.innerText = new_loc
+        location.href = "home.html"
     });
 }
 
