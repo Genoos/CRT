@@ -38,9 +38,11 @@
             <div class="col-lg-4 text-center py-2">
                 <div class="d-inline-flex align-items-center">
                     <i class="bi bi-geo-alt fs-1 text-primary me-3"></i>
-                    <div class="text-start">
-                        <h6 class="text-uppercase mb-1">Your Location</h6>
-                        <span>Hitech city , Hyderabad</span>
+                    <div class="text-start" style="cursor: pointer;">
+                        <a href="location.html">
+                          <h6 class="text-uppercase mb-1">Your Location</h6>
+                          <span> Hitech city , Hyderabad</span>
+                        </a>
                     </div>
                 </div>
             </div>
@@ -79,7 +81,7 @@
         <div class="collapse navbar-collapse" id="navbarCollapse">
             <div class="navbar-nav ms-auto py-0">
                 <a href="home.html" class="nav-item nav-link">Home</a>
-                <a href="about.html" class="nav-item nav-link active">About</a>
+                <a href="about.html" class="nav-item nav-link">About</a>
                 <a href="login.html" id="login-logout" class="nav-item nav-link">Login</a>
                 <span id="n-user-name" class="nav-item nav-link"></span>
                 <!-- <a href="service.html" class="nav-item nav-link">Service</a> -->
@@ -96,8 +98,7 @@
                         <a href="detail.html" class="dropdown-item">Blog Detail</a> -->
                     </div>
                 </div>
-                <a href="location.html" class="nav-item nav-link nav-contact bg-primary text-white px-5 ms-lg-5">Change
-                    Location<i class="bi bi-arrow-right"></i></a>
+                <a href="gallery.html" class="nav-item nav-link nav-contact bg-primary text-white px-5 ms-lg-5">Book Now <i class="bi bi-arrow-right"></i></a>
             </div>
         </div>
     </nav>
@@ -111,7 +112,7 @@
                 <!-- <h6 class="text-primary text-uppercase">6-seater Vehicles</h6> -->
                 <!-- <h1 class="display-5 text-uppercase mb-0">Vehicle for rent</h1> -->
             </div>
-            <div class="owl-carousel product-carousel">
+            <div class="owl-carousel product-carousel" id="6-seater">
                 <div class="pb-5">
                     <div class="product-item position-relative bg-light d-flex flex-column text-center">
                         <img class="img-fluid mb-4 box-img" src="img/product-1.png" alt="" />
@@ -175,7 +176,7 @@
                 <!-- <h6 class="text-primary text-uppercase">4-seater Vehicles</h6> -->
                 <!-- <h1 class="display-5 text-uppercase mb-0">Vehicle for rent</h1> -->
             </div>
-            <div class="owl-carousel product-carousel">
+            <div class="owl-carousel product-carousel" id="4-seater">
                 <div class="pb-5">
                     <div class="product-item position-relative bg-light d-flex flex-column text-center">
                         <img class="img-fluid mb-4 box-img" src="img/product-1.png" alt="" />
@@ -239,7 +240,7 @@
                 <!-- <h6 class="text-primary text-uppercase">Vehicles</h6> -->
                 <!-- <h1 class="display-5 text-uppercase mb-0">Vehicle for rent</h1> -->
             </div>
-            <div class="owl-carousel product-carousel">
+            <div class="owl-carousel product-carousel" id="2-seater">
                 <div class="pb-5">
                     <div class="product-item position-relative bg-light d-flex flex-column text-center">
                         <img class="img-fluid mb-4 box-img" src="img/product-1.png" alt="" />
@@ -250,7 +251,7 @@
                         </div>
                     </div>
                 </div>
-                <div class="pb-5">
+                <!-- <div class="pb-5">
                     <div class="product-item position-relative bg-light d-flex flex-column text-center">
                         <img class="img-fluid mb-4 box-img" src="img/product-2.png" alt="" />
                         <h6 class="text-uppercase">Suderia Ferrari</h6>
@@ -289,7 +290,7 @@
                             <a class="btn btn-primary py-2 px-3" href=""><i class="bi bi-eye"></i></a>
                         </div>
                     </div>
-                </div>
+                </div> -->
             </div>
         </div>
     </div>
@@ -420,6 +421,7 @@
 
     <!-- Template Javascript -->
     <script src="js/header.js"></script>
+    <script src="js/gallery.js"></script>
     <script src="js/main.js"></script>
 </body>
 
