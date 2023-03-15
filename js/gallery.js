@@ -119,7 +119,7 @@ function loadCarousel(id) {
     const element = document.getElementById(id)
     var html = ""
     for (const car of cars[id]) {
-        var htl = `
+        html += `
         <div class="pb-5">
             <div class="product-item position-relative bg-light d-flex flex-column text-center">
                 <img class="img-fluid mb-4 box-img" src="${car.link}" alt="" />
@@ -130,18 +130,6 @@ function loadCarousel(id) {
                 </div>
             </div>
         </div>
-        `
-        html += `
-        <div class="pb-5">
-        <div class="product-item position-relative bg-light d-flex flex-column text-center">
-            <img class="img-fluid mb-4 box-img" src="img/product-1.png" alt="" />
-            <h6 class="text-uppercase">Suzuki Swift</h6>
-            <h5 class="text-primary mb-0">$199.00</h5>
-            <div class="btn-action d-flex justify-content-center">
-                <a class="btn btn-primary py-2 px-3" href=""><i class="bi bi-eye"></i></a>
-            </div>
-        </div>
-    </div>
         `
         let div0 = document.createElement("div")
         div0.className = "pb-5"

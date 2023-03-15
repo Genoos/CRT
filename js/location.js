@@ -37,7 +37,7 @@ function removeElements() {
 
 function getSuggestions(event) {
     removeElements()
-    if (event.target.value.length < 3) {
+    if (event.target.value.length < 1) {
         return
     }
     /**
@@ -98,3 +98,14 @@ const input_bar = document.querySelector("#city")
 
 set_button.addEventListener("click", isValidLocation)
 input_bar.addEventListener("keyup", getSuggestions)
+
+$(document).ready(function () {
+    $(".location_button").hover(function () {
+        console.log("hover")
+        console.log($(this))
+    })
+    $(".location_button").mouseleave(function() {
+        console.log("mouse leave")
+
+    })
+})

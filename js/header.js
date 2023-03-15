@@ -8,6 +8,7 @@ function onLoad() {
     
     var new_loc = localStorage.getItem('location')
     let user_loc = document.getElementById("user_location")
+    console.log(new_loc, user_loc)
     if (new_loc == null) {
         user_loc.innerText = "Select Location"
     } else {
