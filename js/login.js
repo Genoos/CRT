@@ -5,6 +5,12 @@ function fetchData(data) {
     /**
      * Ajax code here
      */
+    for (const [k, v] of Object.entries(data)) {
+        if (v == "") {
+            window.alert("please fill " + k + " field")
+            return
+        }
+    }
     localStorage.setItem("username", data["username"])
     location.href = "home.html"
 }
@@ -28,4 +34,7 @@ const button = document.querySelector("#submitlogin")
 
 button.addEventListener('click', submit) 
 
+localStorage.clear()
+
 window.onload = () => localStorage.clear()
+window.onblur = () => localStorage.clear()

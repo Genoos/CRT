@@ -2,10 +2,16 @@
 
 function PostData(data) {
     console.log(data)
+    for (const [k, v] of Object.entries(data)) {
+        if (v == "") {
+            window.alert("please fill " + k + " field")
+            return
+        }
+    }
     /**
      * Ajax code here
      */
-    // location.href = "login.html"
+    location.href = "login.html"
 }
 
 

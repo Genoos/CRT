@@ -25,6 +25,7 @@ function onLoad() {
 
 }
 
+onLoad()
 
 window.onload = onLoad
 window.onblur = onLoad
