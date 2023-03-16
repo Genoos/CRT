@@ -1,31 +1,21 @@
 
-const login_logout = document.querySelector('#login-logout')
-
-const username = document.querySelector('#user-name')
-const nusername = document.querySelector('#n-user-name')
-
-function onLoad() {
-    
-    var new_loc = localStorage.getItem('location')
-    let user_loc = document.getElementById("user_location")
-    console.log(new_loc, user_loc)
-    if (new_loc == null) {
-        user_loc.innerText = "Select Location"
-    } else {
-        user_loc.innerText = new_loc
+$(document).ready(function () {
+    function onLoad() {
+        var new_loc = localStorage.getItem('location')
+        var name = localStorage.getItem("username")
+        $("#user_location").text(new_loc ? new_loc : "Select Location")
+        if (!name) {
+            return
+        }
+        $("#user-name").text(name)
+        $("#n-user-name").text(name)
+        $("#login-logout").text("Logout")
     }
+    window.onload = onLoad()
+    window.blur = onLoad()
+    $("#login-logout").click(function () {
+        localStorage.clear()
+        location.href = "home.html"
+    })
+})
 
-    let name = localStorage.getItem("username")
-    if (!name) {
-        return
-    }
-    username.innerText = name
-    nusername.innerText = name
-    login_logout.innerText = "Logout"
-
-}
-
-onLoad()
-
-window.onload = onLoad
-window.onblur = onLoad

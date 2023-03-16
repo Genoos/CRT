@@ -33,8 +33,3 @@ function submit() {
 const button = document.querySelector("#submitlogin")
 
 button.addEventListener('click', submit) 
-
-localStorage.clear()
-
-window.onload = () => localStorage.clear()
-window.onblur = () => localStorage.clear()
