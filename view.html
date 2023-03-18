@@ -33,6 +33,16 @@
 
     <!-- Template Stylesheet -->
     <link href="css/style.css" rel="stylesheet" />
+    
+    <!-- Jquery cdn -->
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.3/jquery.min.js"></script>
+    <style>
+      #button-addon2{
+        background-color: #7AB730;
+        color: white;
+        border-radius: 6px;
+      }
+    </style>
   </head>
 
   <body>
@@ -140,7 +150,6 @@
           </div>
           <div class="col-lg-7">
             <div class="border-start border-5 border-primary ps-5 mb-5">
-              <h6 class="text-primary text-uppercase">About Us</h6>
               <h1 class="display-5 text-uppercase mb-0">
                 Booking Details
               </h1>
@@ -148,108 +157,58 @@
           
  <div >   
     <form name="time-form"> 
-        <div style="display: flex;">
-            <div class="col-lg-7">
-                    <div class="border-start border-5 border-primary ps-5 mb-5">
-                <h6 class="text-primary text-uppercase"><label for="dateofbirth">Start Date</label></h6>
-                <input type="date" name="dateofbirth" id="dateofbirth">
-                </div>
-                
-                <div class="border-start border-5 border-primary ps-5 mb-5">
-                    <h6 class="text-primary text-uppercase"><label for="enddate">End date</label></h6>
-                    <input type="date" name="enddate" id="dateofbirth">
-                </div>
-            </div>
-            
-            <div class="col-lg-7">
-                <div class="border-start border-5 border-primary ps-5 mb-5">
-                <h6 class="text-primary text-uppercase"><label for="starttime">Start Time</label></h6>
-                <input type="time" name="starttime">
-                </div>
-                
-                <div class="border-start border-5 border-primary ps-5 mb-5">
-                    <h6 class="text-primary text-uppercase"><label for="endtime">End time</label></h6>
-                    <input type="time" name="endtime">
-                </div>
-            </div>
+      <div class="row mb-3">
+        <div class="col-md-6">
+          <div class="form-group">
+            <label for="start_date">Start Date:</label>
+            <input type="date" class="form-control" id="start_date" name="start_date">
+          </div>
+        </div>
+        <div class="col-md-6">
+          <div class="form-group">
+            <label for="start_time">Start Time:</label>
+            <input type="time" class="form-control" id="start_time" name="start_time">
+          </div>
+        </div>
+      </div>
+      
+      <div class="row mb-4">
+        <div class="col-md-6">
+          <div class="form-group">
+            <label for="end_date">End Date:</label>
+            <input type="date" class="form-control" id="end_date" name="end_date">
+          </div>
+        </div>
+        <div class="col-md-6">
+          <div class="form-group">
+            <label for="end_time">End Time:</label>
+            <input type="time" class="form-control" id="end_time" name="end_time">
+          </div>
+        </div>
+      </div>
+      
+
+        <div class="col-12">
+          <div class="input-group mb-3">
+            <input type="text" class="form-control" placeholder="Enter Promo Code" aria-label="Recipient's username" aria-describedby="button-addon2" id="entercode">
+            <button class="btn" type="button" id="button-addon2">Apply</button>
+          </div>
+        </div>
+
+        <div id="promocodestatus">
+          
         </div>
 
         <div class="col-12">
-            <p class="btn bg-offer w-100 py-3 mt-3" id="bookingPrice"><span style="color: aliceblue;">₹100</span></p>
+            <p class="btn bg-offer w-100 py-3 mt-3" id="bookingPrice"><span style="color: aliceblue;" id="price">₹1000</span></p>
         </div>
-
+        
         <div class="col-12">
             <span class="btn btn-primary w-100 py-3 mt-3" id="submitBooking">Book Car</span>
         </div>
 </form>
 
 </div>
-
-
-
-
-            <div class="bg-light p-4">
-              <ul
-                class="nav nav-pills justify-content-between mb-3"
-                id="pills-tab"
-                role="tablist"
-              >
-                <li class="nav-item w-50" role="presentation">
-                  <button
-                    class="nav-link text-uppercase w-100 active"
-                    id="pills-1-tab"
-                    data-bs-toggle="pill"
-                    data-bs-target="#pills-1"
-                    type="button"
-                    role="tab"
-                    aria-controls="pills-1"
-                    aria-selected="true"
-                  >
-                    Terms
-                  </button>
-                </li>
-                <li class="nav-item w-50" role="presentation">
-                  <button
-                    class="nav-link text-uppercase w-100"
-                    id="pills-2-tab"
-                    data-bs-toggle="pill"
-                    data-bs-target="#pills-2"
-                    type="button"
-                    role="tab"
-                    aria-controls="pills-2"
-                    aria-selected="false"
-                  >
-                    Our Values
-                  </button>
-                </li>
-              </ul>
-              <div class="tab-content" id="pills-tabContent">
-                <div
-                  class="tab-pane fade show active"
-                  id="pills-1"
-                  role="tabpanel"
-                  aria-labelledby="pills-1-tab"
-                >
-                  <p class="mb-0">
-                    Please keep your original Driving License handy. While delivering the car to you, our executive will verify your original Driving License and ID proof.
-                  </p>
-                </div>
-                <div
-                  class="tab-pane fade"
-                  id="pills-2"
-                  role="tabpanel"
-                  aria-labelledby="pills-2-tab"
-                >
-                  <p class="mb-0">
-                    <ul>
-                      <li>We will honour all commitments to our customers.</li>
-                      <li>We will conduct business with unwavering high standards of honesty, trust, professionalism and ethical behaviour.</li>
-                      <li>We will communicate openly and frequently, sharing what we know, when we know it.</li>
-                    </ul>
-                  </p>
-                </div>
-              </div>
-            </div>
           </div>
         </div>
       </div>
@@ -521,7 +480,8 @@
             <p class="mb-md-0">
               &copy; <a class="text-white" href="#">Your Site Name</a>. All
               Rights Reserved.
-            </p>
+            </p>    <script src="https://code.jquery.com/jquery-3.4.1.min.js"></script>
+
           </div>
           <div class="col-md-6 text-center text-md-end">
             <p class="mb-0">
@@ -549,13 +509,6 @@
     <!-- Template Javascript -->
     <script src="js/header.js"></script>
     <script src="js/main.js"></script>
-    <script>    
-        $(function () {
-  $("#datepicker").datepicker({ 
-        autoclose: true, 
-        todayHighlight: true
-  }).datepicker('update', new Date());
-});
-    </script>
+    <script src="js/view.js"></script>
   </body>
 </html>
