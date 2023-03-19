@@ -1,4 +1,14 @@
+//Validation for date
+var today = new Date().toISOString().split('T')[0];
+$("#start_date").attr('min', today);
+$("#end_date").attr('min', today);
+today = new Date();
+var maxDate = new Date(today.getFullYear(), today.getMonth() + 2, today.getDate()).toISOString().split('T')[0];
+$("#start_date").attr('max', maxDate);
+$("#end_date").attr('max', maxDate);
 
+
+//Setting the price
 $("#entercode").prop('disabled', true);
 var price_per_hour = 100
 var price_per_day = 1600
@@ -8,6 +18,12 @@ $("#priceGenerator").click(function(){
     var start_time = $("#start_time").val()
     var end_date = new Date($("#end_date").val())
     var end_time = $("#end_time").val()
+    //validation
+    if(start_date=="Invalid Date"||start_time==''||end_date=='Invalid Date'||end_time==''){
+        $('#errorStatus').empty();
+        $('#errorStatus').append('<small class="data-invalid" style="color: rgb(199, 35, 35);">Please enter all fileds</small>')
+        return
+    }
     //combining into single object
     const start_data_time = new Date(`${start_date.toDateString()} ${start_time}`)
     const end_data_time = new Date(`${end_date.toDateString()} ${end_time}`)
@@ -24,10 +40,11 @@ $("#priceGenerator").click(function(){
         $("#price").text("₹"+final_cost);
         price = "₹"+final_cost
         $("#entercode").prop('disabled', false);
+        $('#errorStatus').empty();
     }
     else{
         $('#errorStatus').empty();
-        $('#errorStatus').append('<small class="promo-invalid" style="color: rgb(199, 35, 35);">Invalid Date</small>')
+        $('#errorStatus').append('<small class="date-invalid" style="color: rgb(199, 35, 35);">Invalid Date</small>')
     }
     
 })
