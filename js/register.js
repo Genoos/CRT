@@ -11,7 +11,21 @@ function PostData(data) {
     /**
      * Ajax code here
      */
-    location.href = "login.html"
+    $.ajax({
+        type: "POST",
+        url: "http://127.0.0.1:3000/user/register",
+        contentType: 'application/json',
+        data: JSON.stringify(data),
+        dataType: 'json',
+        success: function (result) {
+            console.log(result)
+            if (result.errno != undefined) {
+                alert("Not Registered")
+            } else {
+                location.href = "login.html"
+            }
+        }
+    })
 }
 
 
@@ -24,13 +38,13 @@ function submit() {
     }
     /**
      * validate here 
-     */ 
+     */
     PostData(data)
 }
 
 
 const button = document.querySelector("#submitRegister")
 
-button.addEventListener('click', submit) 
+button.addEventListener('click', submit)
 
 window.onload = () => localStorage.clear()

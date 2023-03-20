@@ -2,13 +2,14 @@
 $(document).ready(function () {
     function onLoad() {
         var new_loc = localStorage.getItem('location')
-        var name = localStorage.getItem("username")
         $("#user_location").text(new_loc ? new_loc : "Select Location")
-        if (!name) {
+        var user_data = localStorage.getItem("user_data")
+        if (!user_data) {
             return
         }
-        $("#user-name").text(name)
-        $("#n-user-name").text(name)
+        user_data = JSON.parse(user_data)
+        $("#user-name").text(user_data.name)
+        $("#n-user-name").text(user_data.name)
         $("#login-logout").text("Logout")
     }
     window.onload = onLoad()

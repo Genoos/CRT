@@ -1,18 +1,27 @@
 
 
 function fetchData(data) {
-    console.log(data)
-    /**
-     * Ajax code here
-     */
     for (const [k, v] of Object.entries(data)) {
         if (v == "") {
             window.alert("please fill " + k + " field")
             return
         }
     }
-    localStorage.setItem("username", data["username"])
-    location.href = "home.html"
+    /**
+     * Ajax code here
+     */
+    $.ajax({
+        type: "POST",
+        url: "http://127.0.0.1:3000/user/login",
+        contentType: 'application/json',
+        data: JSON.stringify(data),
+        dataType: 'json',
+        success: function (result) {
+            console.log(result)
+            localStorage.setItem("user_data", JSON.stringify(result))
+            location.href = "home.html"
+        }
+    })
 }
 
 
@@ -25,7 +34,7 @@ function submit() {
     }
     /**
      * validate here 
-     */ 
+     */
     fetchData(data)
 }
 
