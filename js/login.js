@@ -18,8 +18,12 @@ function fetchData(data) {
         dataType: 'json',
         success: function (result) {
             console.log(result)
-            localStorage.setItem("user_data", JSON.stringify(result))
-            location.href = "home.html"
+            if (result.errno != undefined) {
+                alert("Username or password incorrect")
+            } else {
+                localStorage.setItem("user_data", JSON.stringify(result))
+                location.href = "home.html"
+            }
         }
     })
 }
