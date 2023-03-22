@@ -16,7 +16,7 @@ $("#end_date").attr('max', maxDate);
 
 //Setting the price
 $("#entercode").prop('disabled', true);
-$("#priceGenerator").click(function cal(){
+$("#priceGenerator").click(function (){
     var start_date = new Date($("#start_date").val())
     var start_time = $("#start_time").val()
     var end_date = new Date($("#end_date").val())
@@ -54,7 +54,8 @@ $("#priceGenerator").click(function cal(){
     }
     else{
         $('#errorStatus').empty();
-        $('#errorStatus').append('<small class="date-invalid" style="color: rgb(199, 35, 35);">Invalid Date</small>')
+        $('#errorStatus').append('<small class="date-invalid" style="color: rgb(199, 35, 35);">Invalid Date or Time</small>')
+        $("#price").text("₹"+"--");
     }
     
 })
@@ -62,7 +63,7 @@ $("#priceGenerator").click(function cal(){
 // apply the discount
 
 $("#button-addon2").click(function(){
-    if($("#entercode").prop("disabled")&& $('#button-addon2').text()=='Apply'){
+    if(($("#entercode").prop("disabled")&& $('#button-addon2').text()=='Apply')||($('#price').text()=="₹"+"--")){
         return
     }
 
