@@ -8,7 +8,6 @@ $(document).ready(function () {
             return
         }
         user_data = JSON.parse(user_data)
-        $("#user-name").text(user_data.name)
         $("#n-user-name").text(user_data.name)
         $("#login-logout").text("Logout")
     }
