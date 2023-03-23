@@ -35,16 +35,16 @@ function onLoad({ latitude, longitude, kms }) {
                             <div class="col-9">
                                 <div style="display: flex; justify-content: space-around">
                                     <div style="display: flex; flex-direction: column; justify-content: center; height: 260px">
-                                        <h5>Car No: ${car.car_no}</h5>
-                                        <h5>Company: ${car.company}</h5>
-                                        <h5>Model: ${car.model}</h5>
-                                        <h5>Daily Price: ${car.price_per_day}</h5>
+                                        <span class="my-2" style="font-size: 20px">Car No: ${car.car_no}</span>
+                                        <span class="my-2" style="font-size: 20px">Company: ${car.company}</span>
+                                        <span class="my-2" style="font-size: 20px">Model: ${car.model}</span>
+                                        <span class="my-2" style="font-size: 20px">Daily Price: ${car.price_per_day}</span>
                                     </div>
                                     <div style="display: flex; flex-direction: column; justify-content: center; height: 260px">
-                                        <h5><button onclick="view('${car.car_no}')" class="btn btn-primary">View</button></h5>
-                                        <h5>Hourly Price: ${car.price_per_hour}</h5>
-                                        <h5>Manifactured in: ${car.manifactured_year}</h5>
-                                        <h5>Distance Driven: ${car.driven_distance}</h5>
+                                        <span class="my-2" style="font-size: 20px"><button onclick="view('${car.car_no}')" class="btn btn-primary">View</button></span>
+                                        <span class="my-2" style="font-size: 20px">Hourly Price: ${car.price_per_hour}</span>
+                                        <span class="my-2" style="font-size: 20px">Manifactured in: ${car.manifactured_year}</span>
+                                        <span class="my-2" style="font-size: 20px">Distance Driven: ${car.driven_distance}</span>
                                     </div>
                                 </div>
                             </div>
