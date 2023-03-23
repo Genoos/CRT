@@ -37,14 +37,35 @@ export default function CarsModule() {
             const location = await ARSCar.findOne({ car_no: car_no }, { location: 1 })
             return location || { message: "car not avaliable" }
         },
+        getNearLocation: async function ({ latitude, longitude, kms }) {
+            try {
+                latitude = parseFloat(latitude)
+                longitude = parseFloat(longitude)
+                kms = parseFloat(kms)
+                const nearby = await ARSCar.find({
+                    location: {
+                        $geoWithin: {
+                            $center: [
+                                [latitude, longitude],
+                                kms / 111
+                            ]
+                        }
+                    }
+                })
+                return nearby
+            } catch (e) {
+                return { ...e, errno: 403 }
+            }
+        },
         setCarLocation: async function ({ car_no, latitude, longitude }) {
             try {
                 const result = await ARSCar.findOneAndUpdate({ car_no: car_no }, {
+                    trueLocation: true,
                     location: [latitude, longitude]
                 })
-                return result
+                return { car_no: result.car_no, location: result.location }
             } catch (e) {
-                return e
+                return { errno: 403, ...e }
             }
         }
     }

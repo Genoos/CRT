@@ -27,5 +27,17 @@ app.route('/addcar')
         res.status(200).json(await carModule.addCar(data))
     })
 
+app.route('/nearby')
+    .post(async (req, res) => {
+        let data = req.body
+        res.status(200).json(await carModule.getNearLocation(data))
+    })
+
+app.route('/setlocation')
+    .post(async (req, res) => {
+        let data = req.body
+        res.status(200).json(await carModule.setCarLocation(data))
+    })
+
 const car = app
 export default car

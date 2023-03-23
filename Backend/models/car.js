@@ -2,6 +2,15 @@ import mongoose, { Schema } from "mongoose"
 import ARSUser from "./user.js"
 
 const bookingSchema = new mongoose.Schema({
+    email: {
+        type: String,
+        required: true,
+        validate: {
+            validator: function (v) {
+                return /^[a-zA-Z0-9\.]{1,26}@gmail.com$/.test(v)
+            }
+        }
+    },
     from_date: {
         type: String,
         required: true,
@@ -92,7 +101,7 @@ const carSchema = new mongoose.Schema({
     location: {
         type: [Number],
         validate: {
-            validator: function(v) {
+            validator: function (v) {
                 return v.length == 2
             }
         },
