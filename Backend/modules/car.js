@@ -4,7 +4,7 @@ import ARSUser from '../models/user.js'
 export default function CarsModule() {
     return {
         addCar: async function ({ car_no, seater_type, price_per_day, price_per_hour,
-            company, model, manifactured_year, driven_distance, owner, email }) {
+            company, model, manifactured_year, driven_distance, owner }) {
             try {
                 const car = new ARSCar({
                     car_no: car_no,
@@ -17,13 +17,14 @@ export default function CarsModule() {
                     driven_distance: driven_distance,
                     owner: owner,
                 })
-                await car.save()
-                const result = await ARSCar.findOne({ car_no: car_no })
+                const result = await car.save()
                 const user = await ARSUser.findOneAndUpdate({ _id: owner }, {
                     $push: {
                         host: {
                             _id: result._id,
                             car_no: result.car_no,
+                            company: result.company,
+                            model: result.model,
                         }
                     }
                 })

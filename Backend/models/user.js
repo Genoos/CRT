@@ -46,6 +46,18 @@ const userSchema = new mongoose.Schema({
                         return /^[A-Z]{2}\d\d[A-Z]{2}\d\d\d\d$/.test(v)
                     }
                 }
+            },
+            company: {
+                type: String,
+                required: true,
+            },
+            model: {
+                type: String,
+                required: true,
+            },
+            used_this_month: {
+                type: Number,
+                default: 0
             }
         }],
         required: true,
