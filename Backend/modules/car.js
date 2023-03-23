@@ -51,6 +51,8 @@ export default function CarsModule() {
                             ]
                         }
                     }
+                }, {
+                    booking: 0
                 })
                 return nearby
             } catch (e) {
