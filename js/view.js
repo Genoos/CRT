@@ -101,3 +101,31 @@ $("#button-addon2").click(function () {
         $("#priceGenerator").click()
     }
 })
+
+console.log(localStorage.getItem("car_no"))
+
+function onLoad({ car_no }) {
+    /**
+     * Ajax code here
+     */
+    let data = {
+        car_no: car_no
+    }
+    $.ajax({
+        type: "POST",
+        url: "http://127.0.0.1:3000/car/view",
+        contentType: 'application/json',
+        data: JSON.stringify(data),
+        dataType: 'json',
+        success: function (result) {
+            if (result.errno != undefined) {
+                alert("No cars avaliable")
+            } else {
+                console.log(result)
+                localStorage.setItem("car", JSON.stringify(result))
+            }
+        }
+    })
+}
+
+onLoad({ car_no: localStorage.getItem("car_no") })

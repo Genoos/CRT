@@ -33,6 +33,10 @@ export default function CarsModule() {
                 return { ...e, errno: 403 }
             }
         },
+        getCar: async function ({ car_no }) {
+            const car = await ARSCar.findOne({ car_no: car_no })
+            return car || { errno: 404 }
+        },
         getCarLocation: async function ({ car_no }) {
             const location = await ARSCar.findOne({ car_no: car_no }, { location: 1 })
             return location || { message: "car not avaliable" }

@@ -21,6 +21,12 @@ app.route('/location/:idplate')
         res.status(200).json(coords[car])
     })
 
+app.route('/view')
+    .post(async (req, res) => {
+        let data = req.body
+        res.status(200).json(await carModule.getCar(data))
+    })
+
 app.route('/addcar')
     .post(async (req, res) => {
         let data = req.body
