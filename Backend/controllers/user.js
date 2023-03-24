@@ -1,7 +1,7 @@
 import ARSUser from "../models/user.js"
 
 
-export default function UserModule() {
+export default function UserController() {
     return {
         authenticate: async function ({ email, passwd }) {
             const user = await ARSUser.findOne({ email: email, passwd: passwd }, { host: 0 })

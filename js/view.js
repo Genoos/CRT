@@ -122,6 +122,9 @@ function onLoad({ car_no }) {
                 alert("No cars avaliable")
             } else {
                 console.log(result)
+                $("#car-picture").attr("src", result.car_picture)
+                price_per_hour = result.price_per_hour
+                price_per_day = result.price_per_day
                 localStorage.setItem("car", JSON.stringify(result))
             }
         }

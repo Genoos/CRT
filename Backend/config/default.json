@@ -1,0 +1,9 @@
+{
+    "server": {
+        "host": "127.0.0.1",
+        "port": 3000
+    },
+    "mongo": {
+        "url": "mongodb+srv://batch6:herovired@cluster0.aqifkg2.mongodb.net/DarwinBox2"
+    }
+}

@@ -1,13 +1,13 @@
 import express from "express"
-import UserModule from "../modules/user.js"
+import UserController from "../controllers/user.js"
 
 const app = express.Router()
 app.use(express.json())
-const userModule = UserModule()
+const userController = UserController()
 
 app.route("/login")
     .post(async (req, res) => {
-        let data = await userModule.authenticate(req.body)
+        let data = await userController.authenticate(req.body)
         if (data) {
             res.status(200).json(data)
         } else {
@@ -17,7 +17,7 @@ app.route("/login")
 
 app.route("/register")
     .post(async (req, res) => {
-        let data = await userModule.createUser(req.body)
+        let data = await userController.createUser(req.body)
         if (data['email']) {
             res.status(200).json(data)
         } else {
@@ -27,7 +27,7 @@ app.route("/register")
 
 app.route('/cars')
     .post(async (req, res) => {
-        let data = await userModule.getCars(req.body)
+        let data = await userController.getCars(req.body)
         res.status(200).json(data)
     })
 

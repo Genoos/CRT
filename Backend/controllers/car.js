@@ -1,7 +1,7 @@
 import ARSCar from '../models/car.js'
 import ARSUser from '../models/user.js'
 
-export default function CarsModule() {
+export default function CarsController() {
     return {
         addCar: async function ({ car_no, seater_type, price_per_day, price_per_hour,
             company, model, manifactured_year, driven_distance, owner }) {
