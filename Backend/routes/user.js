@@ -31,5 +31,11 @@ app.route('/cars')
         res.status(200).json(data)
     })
 
+app.route('/bookcar')
+    .post(async (req, res) => {
+        let data = await userController.bookCar(req.body)
+        res.status(200).json(data)
+    })
+
 const user = app
 export default user

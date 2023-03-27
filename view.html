@@ -149,13 +149,13 @@
                 <div class="col-md-6">
                   <div class="form-group">
                     <label for="start_date">Start Date:</label>
-                    <input type="date" class="form-control" id="start_date" name="start_date">
+                    <input type="date" class="form-control" id="start_date" name="from_date">
                   </div>
                 </div>
                 <div class="col-md-6">
                   <div class="form-group">
                     <label for="start_time">Start Time:</label>
-                    <input type="time" class="form-control" id="start_time" name="start_time">
+                    <input type="time" class="form-control" id="start_time" name="from_time" value="12:00">
                   </div>
                 </div>
               </div>
@@ -164,28 +164,19 @@
                 <div class="col-md-6">
                   <div class="form-group">
                     <label for="end_date">End Date:</label>
-                    <input type="date" class="form-control" id="end_date" name="end_date">
+                    <input type="date" class="form-control" id="end_date" name="to_date">
                   </div>
                 </div>
                 <div class="col-md-6">
                   <div class="form-group">
                     <label for="end_time">End Time:</label>
-                    <input type="time" class="form-control" id="end_time" name="end_time">
+                    <input type="time" class="form-control" id="end_time" name="to_time" value="12:00">
                   </div>
                 </div>
               </div>
 
               <div id="errorStatus">
 
-              </div>
-              <div class="container">
-                <div class="row justify-content-center">
-                  <div class="col-6">
-                    <div class="text-center">
-                      <button class="btn btn-primary mb-3" type="button" id="priceGenerator">Submit</button>
-                    </div>
-                  </div>
-                </div>
               </div>
 
               <div class="col-12">
@@ -206,7 +197,7 @@
               </div>
 
               <div class="col-12">
-                <span class="btn btn-primary w-100 py-3 mt-3" id="submitBooking">Book Car</span>
+                <span class="btn btn-primary w-100 py-3 mt-3" id="submitBooking" onclick="submit()">Book Car</span>
               </div>
             </form>
 

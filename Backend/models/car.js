@@ -1,54 +1,6 @@
 import mongoose, { Schema } from "mongoose"
 import ARSUser from "./user.js"
 
-const bookingSchema = new mongoose.Schema({
-    email: {
-        type: String,
-        required: true,
-        validate: {
-            validator: function (v) {
-                return /^[a-zA-Z0-9\.]{1,26}@gmail.com$/.test(v)
-            }
-        }
-    },
-    from_date: {
-        type: String,
-        required: true,
-        validate: {
-            validator: function (v) {
-                return /^\d{4}-\d{2}-\d{2}$/.test(v)
-            }
-        },
-    },
-    from_time: {
-        type: String,
-        required: true,
-        validate: {
-            validator: function (v) {
-                return /^\d{2}:\d{2}$/.test(v)
-            }
-        },
-    },
-    to_date: {
-        type: String,
-        required: true,
-        validate: {
-            validator: function (v) {
-                return /^\d{4}-\d{2}-\d{2}$/.test(v)
-            }
-        },
-    },
-    to_time: {
-        type: String,
-        required: true,
-        validate: {
-            validator: function (v) {
-                return /^\d{2}:\d{2}$/.test(v)
-            }
-        },
-    },
-})
-
 const carSchema = new mongoose.Schema({
     car_no: {
         type: String,
@@ -113,8 +65,54 @@ const carSchema = new mongoose.Schema({
         required: true,
     },
     booking: {
-        type: [bookingSchema],
-        default: []
+        type: [{
+            email: {
+                type: String,
+                required: true,
+                validate: {
+                    validator: function (v) {
+                        return /^[a-zA-Z0-9\.]{1,26}@gmail.com$/.test(v)
+                    }
+                }
+            },
+            from_date: {
+                type: String,
+                required: true,
+                validate: {
+                    validator: function (v) {
+                        return /^\d{4}-\d{2}-\d{2}$/.test(v)
+                    }
+                },
+            },
+            from_time: {
+                type: String,
+                required: true,
+                validate: {
+                    validator: function (v) {
+                        return /^\d{2}:\d{2}$/.test(v)
+                    }
+                },
+            },
+            to_date: {
+                type: String,
+                required: true,
+                validate: {
+                    validator: function (v) {
+                        return /^\d{4}-\d{2}-\d{2}$/.test(v)
+                    }
+                },
+            },
+            to_time: {
+                type: String,
+                required: true,
+                validate: {
+                    validator: function (v) {
+                        return /^\d{2}:\d{2}$/.test(v)
+                    }
+                },
+            },
+        }],
+        default: [],
     }
 })
 
