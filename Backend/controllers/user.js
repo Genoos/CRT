@@ -64,22 +64,18 @@ export default function UserController() {
                 for (const booking of arr) {
                     if (booking.from_date + booking.from_time <= from_date + from_time
                         && from_date + from_time <= booking.to_date + booking.to_time) {
-                        console.log(1)
                         return { errno: 403 }
                     }
                     if (booking.from_date + booking.from_time <= to_date + to_time
                         && to_date + to_time <= booking.to_date + booking.to_time) {
-                        console.log(2)
                         return { errno: 403 }
                     }
                     if (from_date + from_time <= booking.from_date + booking.from_time
                         && booking.from_date + booking.from_time <= to_date + to_time) {
-                        console.log(3)
                         return { errno: 403 }
                     }
                     if (from_date + from_time <= booking.to_date + booking.to_time
                         && booking.to_date + booking.to_time <= to_date + to_time) {
-                        console.log(4)
                         return { errno: 403 }
                     }
                 }
