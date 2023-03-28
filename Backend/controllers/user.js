@@ -1,5 +1,6 @@
 import ARSUser from "../models/user.js"
 import ARSCar from "../models/car.js"
+import ARSBooking from "../models/booking.js"
 
 export default function UserController() {
     return {
@@ -22,6 +23,32 @@ export default function UserController() {
                 return e
             }
         },
+        profile: async function ({ email }) {
+            try {
+                const result = await ARSUser.findOne({ email: email }, { picture: 1 })
+                return result
+            } catch (e) {
+                return { ...e, errno: 400 }
+            }
+        },
+        updateProfile: async function (data) {
+            try {
+                let email = data.email
+                delete data.email
+                await ARSUser.findOneAndUpdate({ email: email }, {
+                    $set: {
+                        ...data
+                    }
+                })
+                for (const k of data) {
+                    data[k] = 1
+                }
+                const result = await ARSUser.findOne({ email: email }, { ...data })
+                return result
+            } catch (e) {
+                return { ...e, errno: 400 }
+            }
+        },
         getCars: async function ({ _id }) {
             try {
                 const data = await ARSUser.findOne({ _id: _id })
@@ -33,13 +60,26 @@ export default function UserController() {
         bookCar: async function ({ car_no, email, from_date, from_time, to_date, to_time }) {
             try {
                 const bookings = await ARSCar.findOne({ car_no: car_no }, { booking: 1 })
-                for (const booking in bookings) {
-                    if (booking.from_date + bookings.from_time <= from_date + from_time
-                        || from_date + from_time <= booking.to_date + bookings.to_time) {
+                const arr = JSON.parse(JSON.stringify(bookings.booking))
+                for (const booking of arr) {
+                    if (booking.from_date + booking.from_time <= from_date + from_time
+                        && from_date + from_time <= booking.to_date + booking.to_time) {
+                        console.log(1)
                         return { errno: 403 }
                     }
-                    if (booking.from_date + bookings.from_time <= to_date + to_time
-                        || to_date + to_time <= booking.to_date + bookings.to_time) {
+                    if (booking.from_date + booking.from_time <= to_date + to_time
+                        && to_date + to_time <= booking.to_date + booking.to_time) {
+                        console.log(2)
+                        return { errno: 403 }
+                    }
+                    if (from_date + from_time <= booking.from_date + booking.from_time
+                        && booking.from_date + booking.from_time <= to_date + to_time) {
+                        console.log(3)
+                        return { errno: 403 }
+                    }
+                    if (from_date + from_time <= booking.to_date + booking.to_time
+                        && booking.to_date + booking.to_time <= to_date + to_time) {
+                        console.log(4)
                         return { errno: 403 }
                     }
                 }
@@ -65,6 +105,15 @@ export default function UserController() {
                         }
                     }
                 })
+                const booking_data = new ARSBooking({
+                    car: car_result._id,
+                    user: user_result._id,
+                    from_date: from_date,
+                    from_time: from_time,
+                    to_date: to_date,
+                    to_time: to_time
+                })
+                await booking_data.save()
                 return {
                     u_id: user_result._id,
                     c_id: car_result._id,
@@ -74,6 +123,6 @@ export default function UserController() {
             } catch (e) {
                 return { errno: 403, ...e }
             }
-        }
+        },
     }
 }

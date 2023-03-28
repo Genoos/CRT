@@ -114,8 +114,6 @@
         <a href="about.html" class="nav-item nav-link active">About</a>
         <a href="login.html" id="login-logout" class="nav-item nav-link">Login</a>
         <span id="n-user-name" class="nav-item nav-link"></span>
-        <!-- <a href="service.html" class="nav-item nav-link">Service</a> -->
-        <!-- <a href="product.html" class="nav-item nav-link">Product</a> -->
         <div class="nav-item dropdown">
           <a href="#" class="nav-link dropdown-toggle" data-bs-toggle="dropdown">Goto</a>
           <div class="dropdown-menu m-0 ddm">
@@ -123,11 +121,6 @@
             <a href="setting" class="dropdown-item">Settings</a>
             <a href="map.html" class="dropdown-item">Track my car</a>
             <a href="host.html" class="dropdown-item">Become a Host</a>
-            <!-- <a href="price.html" class="dropdown-item">Pricing Plan</a>
-                      <a href="team.html" class="dropdown-item">The Team</a>
-                      <a href="testimonial.html" class="dropdown-item">Testimonial</a>
-                      <a href="blog.html" class="dropdown-item">Blog Grid</a>
-                      <a href="detail.html" class="dropdown-item">Blog Detail</a> -->
           </div>
         </div>
         <a href="gallery.html" class="nav-item nav-link nav-contact bg-primary text-white px-5 ms-lg-5">Book Now <i
@@ -142,10 +135,15 @@
     <div class="container">
       <div class="row gx-5">
         <div class="col-lg-5 mb-5 mb-lg-0" style="min-height: 500px">
+          <div style="display: flex;">
+            <div class="col-8">
+              <input type="file" id="pro-pic" class="col-12" id="profile_picture" name="profile_picture"
+                value="change profile" />
+            </div>
+            <button class="col-4 btn btn-primary" id="submit_pic">Save changes</button>
+          </div>
           <div class="position-relative h-100">
-            <img class="position-absolute w-100 rounded"
-              src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQJh9ssaOwvRNDkIxFS3pYeZiTvRtmGqQrwA4jYF2H4&s"
-              style="object-fit: cover" />
+            <img class="position-absolute w-100 rounded" id="picture" src="" style="object-fit: cover" />
           </div>
         </div>
         <div class="col-lg-7">

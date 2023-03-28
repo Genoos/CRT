@@ -29,9 +29,6 @@ function generatePrice() {
     var start_time = $("#start_time").val()
     var end_date = new Date($("#end_date").val())
     var end_time = $("#end_time").val()
-    if (start_date + start_time >= end_date + end_time) {
-        return
-    }
     //validation
     if (start_date == "Invalid Date" || start_time == '' || end_date == 'Invalid Date' || end_time == '') {
         $('#errorStatus').empty();
@@ -171,7 +168,7 @@ function bookCar({ car_no, email, from_date, from_time, to_date, to_time }) {
             if (result.errno != undefined) {
                 alert("cars not avaliable")
             } else {
-                console.log("result")
+                location.href = './profile.html'
             }
         }
     })
