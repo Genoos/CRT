@@ -4,7 +4,7 @@ import ARSCar from "../models/car.js"
 export default function UserController() {
     return {
         authenticate: async function ({ email, passwd }) {
-            const user = await ARSUser.findOne({ email: email, passwd: passwd }, { host: 0 })
+            const user = await ARSUser.findOne({ email: email, passwd: passwd }, { host: 0, car_booked: 0 })
             return user
         },
         createUser: async function ({ name, email, passwd, phone }) {
