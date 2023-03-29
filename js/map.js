@@ -49,6 +49,12 @@ $(document).ready(function () {
             // $("#frame-" + frame).hide()
         // }, 1000)
     // })
+    if (!localStorage.getItem("email")) {
+        location.href("./login.html")
+    }
+    if (!localStorage.getItem("track")) {
+        location.href("./profile.html")
+    }
     $('#plate_no').text(localStorage.getItem("track"))
     getCoords()
     simulateTravelling()

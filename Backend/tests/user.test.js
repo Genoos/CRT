@@ -4,11 +4,6 @@ import UserController from "../controllers/user.js"
 
 const user = UserController()
 
-mongoose.connect(config.get("mongo.url"))
-    .then(() => {
-        console.log("DB Connected")
-    })
-    .catch(() => console.log("db NOT connected"))
 
 
 describe("login test", () => {
