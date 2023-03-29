@@ -9,9 +9,24 @@
   <meta content="Free HTML Templates" name="description" />
 
   <style>
+    .grid-container {
+      display: grid;
+      grid-template-columns: auto auto auto;
+      padding: 10px;
+    }
+
+    .grid-item {
+      padding: 20px;
+      text-align: center;
+      font-size: 18px;
+    }
+
+    .mgreen {
+      background-color: rgb(193, 231, 149);
+    }
+
     table {
       border-radius: 25px;
-      background-color: rgb(193, 231, 149);
     }
 
     .round {
@@ -28,7 +43,8 @@
       padding: 35px;
     }
 
-    li h4, * h4 {
+    li h4,
+    * h4 {
       text-align: left;
       color: rgb(53, 81, 55);
     }
@@ -140,7 +156,7 @@
   <!-- Navbar End -->
 
   <!-- About Start -->
-  <div class="container-fluid py-5">
+  <div class="container-fluid pt-5">
     <div class="container">
       <div class="row gx-5">
         <div class="col-lg-5 mb-5 mb-lg-0" style="min-height: 500px">
@@ -157,29 +173,44 @@
         </div>
         <div class="col-lg-7">
           <div class="border-start border-5 border-primary ps-5 mb-5">
-            <!-- <h6 class="text-primary text-uppercase">Your Cars</h6> -->
             <h1 class="display-5 text-uppercase mb-0">
-              We always take good care for your cars
+              We always take good care of your cars
             </h1>
           </div>
-          <div style="display: flex; justify-content: space-between">
-            <h1>Your Cars</h1>
-            <a href="host.html">
-              <div class="add-car" style="margin-left: 200px">
-                <button class="btn btn-primary">Add Car</button>
-              </div>
-            </a>
+          <div class="togg">
+            <img class="w-100" src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTMHGxIEsSRVxaTHQDGkxlZWseUVx5cTu6Y8Q&usqp=CAU" alt="">
           </div>
-          <table class="col-12 car-tab my-5"></table>
-          <div style="display: flex; justify-content: space-between">
-            <h1>Your Booked Cars</h1>
-          </div>
-          <table class="col-12 car-book my-5"></table>
         </div>
       </div>
     </div>
   </div>
   <!-- About End -->
+
+
+  <div class="container-fluid pb-5">
+    <div class="container">
+      <div style="display: flex; justify-content: space-between">
+        <h1>Your Booked Cars</h1>
+      </div>
+      <div class="grid-container car-book">
+      </div>
+    </div>
+  </div>
+
+  <div class="container-fluid py-5">
+    <div class="container">
+      <div style="display: flex; justify-content: space-between">
+        <h1>Your Cars</h1>
+        <a href="host.html">
+          <div class="add-car" style="margin-left: 200px">
+            <button class="btn btn-primary">Add Car</button>
+          </div>
+        </a>
+      </div>
+      <div class="grid-container car-tab">
+      </div>
+    </div>
+  </div>
 
   <!-- Team Start -->
   <div class="container-fluid py-5">

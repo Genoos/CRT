@@ -7,6 +7,7 @@ function track(id) {
 }
 
 function display(id) {
+	window.scrollTo(0, 0);
 	$(".togg").hide();
 	$.ajax({
 		type: "POST",
@@ -16,10 +17,12 @@ function display(id) {
 		dataType: "json",
 		success: function (result) {
 			console.log(result)
-			let html = `<ul>
-				<div style="height: 200px; display:flex; justify-content: center">
+			let html = `
+				<div style="height: 200px; display:flex; justify-content: space-between">
+					<div><h3>Car No. ${id}</h3></div>
 					<img class="h-100" src="${result.car_picture}"></img>
 				</div>
+				<ul>
 			`
 			for (const book of result.booking) {
 				html += `
@@ -42,16 +45,17 @@ function display(id) {
 				`
 			}
 			html += '</ul>'
-			$("#" + id).html(html);
+			$(".togg").html(html);
 			if (!result.booking.length) {
-				$("#" + id).html('<h4  style="text-align: center">No bookings</h4>');
+				$(".togg").html('<h4  style="text-align: center">No bookings</h4>');
 			}
-			$("#" + id).toggle(1000);
+			$(".togg").toggle(1000);
 		},
 	})
 }
 
 function bookDisplay(id) {
+	window.scrollTo(0, 0);
 	$(".togg").hide();
 	$.ajax({
 		type: "POST",
@@ -61,8 +65,9 @@ function bookDisplay(id) {
 		dataType: "json",
 		success: function (result) {
 			console.log(result)
-			$("#" + id + '-book').html(`
-				<div style="height: 200px">
+			$(".togg").html(`
+				<div style="height: 200px; display:flex; justify-content: space-between">
+					<div><h3>Car No. ${id}</h3></div>
 					<img class="h-100" src="${result.car_picture}"></img>
 				</div>
 				<div class="det">
@@ -91,9 +96,9 @@ function bookDisplay(id) {
 				</div>
 			`);
 			if (!result.booking.length) {
-				$("#" + id + '-book').html('<h4  style="text-align: center">No bookings</h4>');
+				$(".togg").html('<h4  style="text-align: center">No bookings</h4>');
 			}
-			$("#" + id + '-book').toggle(1000);
+			$(".togg").toggle(1000);
 		},
 	})
 }
@@ -125,59 +130,44 @@ function PostData() {
 		dataType: "json",
 		success: function (result) {
 			$(".car-tab").empty();
-			$(".car-tab").append(`
-				<tr>
-					<th style="text-align: center;">Number</th>
-					<th style="text-align: center;">Company</th>
-					<th style="text-align: center;">Frequency</th>
-					<th style="text-align: center;">Details</th>
-					<th style="text-align: center;">Location</th>
-				</tr>
-			`);
 			console.log(result);
-
 			if (result.errno != undefined) {
 				alert("Invalid User");
 			} else {
 				// location.href = "login.html"
 				for (const car of result.host) {
-					$(".car-tab").append(`
-                        <tr>
-                            <td>${car.car_no}</td>    
-                            <td>${car.company + " " + car.model}</td>    
-                            <td>${car.used_this_month}</td>
-                            <td><button class="btn btn-primary round" onclick=display('${car.car_no}')>Show</button></td>    
-                            <td><button class="btn btn-primary round" onclick=track('${car.car_no}')>Track</button></td>    
-                        </tr>
-                        <tr>
-                            <td colspan="6" class="togg" id="${car.car_no}" style="text-align: left">     
-                            </td>
-                        </tr>
-                    `)
+					$('.car-tab').append(`
+						<div class="grid-item py-5">
+							<div class="card" style="width: 22rem;">
+								<div class="card-body mgreen">
+									<h5 class="card-title my-3">${car.company + " " + car.model}</h5>
+									<p class="card-text">Car No. ${car.car_no}</p>
+									<p class="card-text">This month bookings ${car.used_this_month}</p>
+									<div class="my-3" style="display: flex; justify-content: space-around">
+										<button class="btn btn-primary round" onclick=bookDisplay('${car.car_no}')>Show</button>
+										<button class="btn btn-primary round" onclick=track('${car.car_no}')>Track</button>
+									</div>
+								</div>
+							</div>
+						</div>
+					`)
 				}
 				$(".car-book").empty();
-				$(".car-book").append(`
-					<tr>
-						<th style="text-align: center;">Number</th>
-						<th style="text-align: center;">From</th>
-						<th style="text-align: center;">To</th>
-						<th style="text-align: center;">Details</th>
-						<th style="text-align: center;">Location</th>
-					</tr>
-				`);
 				for (const car of result.car_booked) {
 					$(".car-book").append(`
-						<tr>
-							<td>${car.car_no}</td>
-							<td>${car.from_time + " / " + car.from_date}</td>
-							<td>${car.to_time + " / " + car.to_date}</td>
-							<td><button class="btn btn-primary round" onclick=bookDisplay('${car.car_no}')>Show</button></td>    
-							<td><button class="btn btn-primary round" onclick=track('${car.car_no}')>Track</button></td>    
-						</tr>
-						<tr>
-							<td colspan="5" class="togg" id="${car.car_no}-book">     
-							</td>
-						</tr>
+						<div class="grid-item py-5">
+							<div class="card" style="width: 22rem;">
+								<div class="card-body mgreen">
+									<h5 class="card-title my-3">Car No. ${car.car_no}</h5>
+									<p class="card-text">Booked from: ${car.from_time + " / " + car.from_date}</p>
+									<p class="card-text">Booked to: ${car.to_time + " / " + car.to_date}</p>
+									<div class="my-3" style="display: flex; justify-content: space-around">
+										<button class="btn btn-primary round" onclick=display('${car.car_no}')>Show</button>
+										<button class="btn btn-primary round" onclick=track('${car.car_no}')>Track</button>
+									</div>
+								</div>
+							</div>
+						</div>
 					`)
 				}
 			}
