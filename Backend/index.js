@@ -28,3 +28,4 @@ mongoose.connect(MONGO_URL)
         app.listen(3000, () => console.log(`open http://${HOST}:${PORT}`))
     })
     .catch(() => console.log("db NOT connected"))
+
