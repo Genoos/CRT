@@ -27,6 +27,15 @@
     th {
       padding: 35px;
     }
+
+    li h4, * h4 {
+      text-align: left;
+      color: rgb(53, 81, 55);
+    }
+
+    .det p {
+      text-align: left;
+    }
   </style>
 
   <!-- Favicon -->
@@ -112,10 +121,10 @@
       <div class="navbar-nav ms-auto py-0">
         <a href="home.html" class="nav-item nav-link">Home</a>
         <a href="about.html" class="nav-item nav-link active">About</a>
-        <a href="login.html" id="login-logout" class="nav-item nav-link">Login</a>
         <span id="n-user-name" class="nav-item nav-link"></span>
+        <a href="login.html" id="login-logout" class="nav-item nav-link">Login</a>
         <div class="nav-item dropdown">
-          <a href="#" class="nav-link dropdown-toggle" data-bs-toggle="dropdown">Goto</a>
+          <a href="#" class="nav-link dropdown-toggle" data-bs-toggle="dropdown"></a>
           <div class="dropdown-menu m-0 ddm">
             <a href="profile.html" id="user-name" class="dropdown-item">Profile</a>
             <a href="setting" class="dropdown-item">Settings</a>
@@ -135,9 +144,9 @@
     <div class="container">
       <div class="row gx-5">
         <div class="col-lg-5 mb-5 mb-lg-0" style="min-height: 500px">
-          <div style="display: flex;">
+          <div style="display: flex;" class="my-5">
             <div class="col-8">
-              <input type="file" id="pro-pic" class="col-12" id="profile_picture" name="profile_picture"
+              <input type="file" id="pro-pic" class="col-12 h-100" id="profile_picture" name="profile_picture"
                 value="change profile" />
             </div>
             <button class="col-4 btn btn-primary" id="submit_pic">Save changes</button>
