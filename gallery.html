@@ -95,7 +95,9 @@
         <!-- <a href="service.html" class="nav-item nav-link">Service</a> -->
         <!-- <a href="product.html" class="nav-item nav-link">Product</a> -->
         <div class="nav-item dropdown">
-          <a href="#" class="nav-link dropdown-toggle" data-bs-toggle="dropdown"></a>
+          <a href="#" class="nav-link dropdown-toggle" data-bs-toggle="dropdown">
+            <img width="25px" src="img/settings.png" alt="">
+          </a>
           <div class="dropdown-menu m-0 ddm">
             <a href="profile.html" id="user-name" class="dropdown-item">Profile</a>
             <a href="setting" class="dropdown-item">Settings</a>
@@ -119,6 +121,7 @@
 
   <div class="container-fluid py-5">
     <div class="container col-6">
+      <h3 class="text-muted">Cars available <span id="cars-ava">0</span></h3>
       <h3 class="text-muted">Cars within <span id="display-km">5</span> KM</h3>
       <input type="range" style="border: none; box-shadow: none;" class="form-range" min="1" max="25" step="1"
         id="km-range" value="5" onchange="loadCars(value)">

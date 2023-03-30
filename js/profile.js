@@ -19,7 +19,11 @@ function display(id) {
 			console.log(result)
 			let html = `
 				<div style="height: 200px; display:flex; justify-content: space-between">
-					<div><h3>Car No. ${id}</h3></div>
+					<div>
+						<h3>Car No. ${id}</h3>
+						<h6>Car Company: ${result.company}</h6>	
+						<h6>Car Model: ${result.model}</h6>	
+					</div>
 					<img class="h-100" src="${result.car_picture}"></img>
 				</div>
 				<ul>
@@ -67,7 +71,9 @@ function bookDisplay(id) {
 			console.log(result)
 			$(".togg").html(`
 				<div style="height: 200px; display:flex; justify-content: space-between">
-					<div><h3>Car No. ${id}</h3></div>
+					<div>
+						<h3>Car No. ${id}</h3>	
+					</div>
 					<img class="h-100" src="${result.car_picture}"></img>
 				</div>
 				<div class="det">
@@ -95,9 +101,9 @@ function bookDisplay(id) {
 					</div>
 				</div>
 			`);
-			if (!result.booking.length) {
-				$(".togg").html('<h4  style="text-align: center">No bookings</h4>');
-			}
+			// if (!result.booking.length) {
+			// 	$(".togg").html('<h4  style="text-align: center">No bookings</h4>');
+			// }
 			$(".togg").toggle(1000);
 		},
 	})
@@ -129,12 +135,12 @@ function PostData() {
 		data: JSON.stringify(data),
 		dataType: "json",
 		success: function (result) {
-			$(".car-tab").empty();
 			console.log(result);
 			if (result.errno != undefined) {
 				alert("Invalid User");
 			} else {
 				// location.href = "login.html"
+				$(".car-tab").empty();
 				for (const car of result.host) {
 					$('.car-tab').append(`
 						<div class="grid-item py-5">
@@ -144,7 +150,7 @@ function PostData() {
 									<p class="card-text">Car No. ${car.car_no}</p>
 									<p class="card-text">This month bookings ${car.used_this_month}</p>
 									<div class="my-3" style="display: flex; justify-content: space-around">
-										<button class="btn btn-primary round" onclick=bookDisplay('${car.car_no}')>Show</button>
+										<button class="btn btn-primary round" onclick=display('${car.car_no}')>Show</button>
 										<button class="btn btn-primary round" onclick=track('${car.car_no}')>Track</button>
 									</div>
 								</div>
@@ -162,7 +168,7 @@ function PostData() {
 									<p class="card-text">Booked from: ${car.from_time + " / " + car.from_date}</p>
 									<p class="card-text">Booked to: ${car.to_time + " / " + car.to_date}</p>
 									<div class="my-3" style="display: flex; justify-content: space-around">
-										<button class="btn btn-primary round" onclick=display('${car.car_no}')>Show</button>
+										<button class="btn btn-primary round" onclick=bookDisplay('${car.car_no}')>Show</button>
 										<button class="btn btn-primary round" onclick=track('${car.car_no}')>Track</button>
 									</div>
 								</div>

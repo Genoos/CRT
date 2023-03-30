@@ -26,6 +26,7 @@ function onLoad({ latitude, longitude, kms }) {
                 $("#6-seater").empty()
                 $("#4-seater").empty()
                 $("#2-seater").empty()
+                $("#cars-ava").text(result.length)
                 for (const car of result) {
                     $(`#${car.seater_type}-seater`).append(`
                         <div class="row m-1">

@@ -29,6 +29,27 @@
     <!-- Template Stylesheet -->
     <link href="css/style.css" rel="stylesheet" />
     <link rel="stylesheet" href="css/location.css" />
+
+    <link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.3/dist/leaflet.css"
+        integrity="sha256-kLaT2GOSpHechhsozzB+flnD+zUyjE2LlfWPgU04xyI=" crossorigin="" />
+    <script src="https://unpkg.com/leaflet@1.9.3/dist/leaflet.js"
+        integrity="sha256-WBkoXOwTeyKclOHuWtc+i2uENFpDZ9YPdf5Hf+D7ewM=" crossorigin=""></script>
+
+    <link rel="stylesheet" href="https://unpkg.com/leaflet-routing-machine@latest/dist/leaflet-routing-machine.css" />
+    <script src="https://unpkg.com/leaflet-routing-machine@latest/dist/leaflet-routing-machine.js"></script>
+
+    <style>
+        #map {
+            height: 800px;
+        }
+
+        #focusIt {
+            height: 60px;
+            width: 60px;
+            border-radius: 50%;
+            border: none;
+        }
+    </style>
 </head>
 
 <body>
@@ -98,7 +119,10 @@
                 <!-- <a href="service.html" class="nav-item nav-link">Service</a> -->
                 <!-- <a href="product.html" class="nav-item nav-link">Product</a> -->
                 <div class="nav-item dropdown">
-                    <a href="#" class="nav-link dropdown-toggle" data-bs-toggle="dropdown"></a>
+                    <a href="#" class="nav-link dropdown-toggle" data-bs-toggle="dropdown">
+                        <img width="25px" src="img/settings.png" alt="">
+
+                    </a>
                     <div class="dropdown-menu m-0 ddm">
                         <a href="profile.html" id="user-name" class="dropdown-item">Profile</a>
                         <a href="setting" class="dropdown-item">Settings</a>
@@ -124,16 +148,13 @@
                 </h1>
             </div>
             <div>
-                <h2>Car No. <span id="plate_no"></span></h2> 
+                <h2>Car No. <span id="plate_no"></span></h2>
             </div>
             <div class="row g-5">
                 <!-- <iframe width="100%" height="700px" id="your-car"
                     src="https://maps.google.com/maps?q=38.882147,-76.99017&amp;z=15&amp;output=embed"
                     frameborder="0"></iframe> -->
-
-                <iframe height="700px" id="your-car" src="" frameborder="0"></iframe>
-                <!-- <iframe height="700px" class="frame" id="frame-0" src="https://maps.google.com/maps?q=20.5937,78.9629&z=20&output=embed" frameborder="0"></iframe> -->
-                <!-- <iframe height="700px" class="frame" id="frame-1" src="https://maps.google.com/maps?q=20.5937,78.9629&z=20&output=embed" frameborder="0"></iframe> -->
+                <div id="map"></div>
             </div>
             <!-- <input class="form-control" type="button" name="focus" id="focus" value="Focus"> -->
             <div class="col-lg-3"></div>
