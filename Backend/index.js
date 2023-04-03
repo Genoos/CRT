@@ -4,6 +4,8 @@ import car from "./routes/car.js"
 import cors from "cors"
 import mongoose from "mongoose"
 import config from "config"
+import { Server } from "socket.io"
+import http from "http"
 
 const app = express()
 const HOST = config.get("server.host")
@@ -22,10 +24,25 @@ app.get("/", (req, res) => {
 app.use("/user", user)
 app.use("/car", car)
 
+const server = http.createServer(app)
+const io = new Server(server, {
+	cors: {
+        origin: "*",
+    },
+})
+
+io.on("connection", function (socket) {
+	console.log(socket.id)
+	socket.on("disconnect", function () {
+        console.log(socket.id + " : disconnected")
+    })
+})
+
 mongoose
 	.connect(MONGO_URL)
 	.then(() => {
 		console.log("DB Connected")
-		app.listen(3000, () => console.log(`open http://${HOST}:${PORT}`))
+		app.listen(PORT, () => console.log(`open http://${HOST}:${PORT}`))
+		server.listen(4000, () => console.log(`socket http://${HOST}:4000`))
 	})
 	.catch(() => console.log("db NOT connected"))
