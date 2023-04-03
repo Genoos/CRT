@@ -22,7 +22,7 @@ function PostData(data) {
             if (result.errno != undefined) {
                 alert("Not Registered")
             } else {
-                location.href = "login.html"
+                //location.href = "login.html"
             }
         }
     })

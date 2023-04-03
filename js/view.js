@@ -29,9 +29,6 @@ function generatePrice() {
     var start_time = $("#start_time").val()
     var end_date = new Date($("#end_date").val())
     var end_time = $("#end_time").val()
-    if (start_date + start_time >= end_date + end_time) {
-        return
-    }
     //validation
     if (start_date == "Invalid Date" || start_time == '' || end_date == 'Invalid Date' || end_time == '') {
         $('#errorStatus').empty();
@@ -148,7 +145,7 @@ function onLoad({ car_no }) {
 
 onLoad({ car_no: localStorage.getItem("car_no") })
 
-function bookCar({ car_no, email, from_date, from_time, to_date, to_time }) {
+function bookCar({car_no, email, from_date, from_time, to_date, to_time }) {
     /**
      * Ajax code here
      */
@@ -184,6 +181,7 @@ function submit() {
     for (const [k, v] of formData.entries()) {
         data[k] = v
     }
+    console.log(data)
     /**
      * validate here 
      */
