@@ -137,6 +137,14 @@ function onLoad({ car_no }) {
                 $("#car-picture").attr("src", result.car_picture)
                 price_per_hour = result.price_per_hour
                 price_per_day = result.price_per_day
+                for (const book of result.booking) {
+                    $('.books').append(`
+                        <tr>
+                            <td>${book.from_time} / ${book.from_date}</td>
+                            <td>${book.to_time} / ${book.to_date}</td>
+                        </tr>
+                    `)
+                }
                 localStorage.setItem("car", JSON.stringify(result))
             }
         }
@@ -168,7 +176,7 @@ function bookCar({car_no, email, from_date, from_time, to_date, to_time }) {
             if (result.errno != undefined) {
                 alert("cars not avaliable")
             } else {
-                console.log("result")
+                location.href = './profile.html'
             }
         }
     })

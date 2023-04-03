@@ -73,6 +73,6 @@ export default function CarsController() {
             } catch (e) {
                 return { errno: 403, ...e }
             }
-        }
+        },
     }
 }
