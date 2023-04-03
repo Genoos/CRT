@@ -6,11 +6,14 @@ import mongoose from "mongoose"
 import config from "config"
 import { Server } from "socket.io"
 import http from "http"
+import CarsController from "./controllers/car.js"
 
-const app = express()
 const HOST = config.get("server.host")
 const PORT = config.get("server.port")
 const MONGO_URL = config.get("mongo.url")
+const SOCKET_PORT = config.get("socket.port")
+
+const app = express()
 app.use(cors())
 app.use(express.json())
 
@@ -24,18 +27,40 @@ app.get("/", (req, res) => {
 app.use("/user", user)
 app.use("/car", car)
 
+// ------------------------ socket --------------------------
+
+let cache = new Map()
+let carController = new CarsController()
+
 const server = http.createServer(app)
 const io = new Server(server, {
 	cors: {
-        origin: "*",
-    },
+		origin: "*",
+	},
 })
 
 io.on("connection", function (socket) {
 	console.log(socket.id)
+	socket.on("connected", (car_id) => {
+		socket.join(car_id)
+		cache.set(socket.id, car_id)
+	})
+	socket.on("change", (car_id, lat, lng) => {
+		carController.setCarLocation({
+			car_id: car_id,
+			latitude: lat,
+			longitude: lng
+		})
+		socket.to(car_id).emit("loction", {
+			latitude: lat,
+			longitude: lng
+		})
+	})
 	socket.on("disconnect", function () {
-        console.log(socket.id + " : disconnected")
-    })
+		socket.leave(cache.get(socket.id))
+		cache.delete(socket.id)
+		console.log(socket.id + " : disconnected")
+	})
 })
 
 mongoose
@@ -43,6 +68,6 @@ mongoose
 	.then(() => {
 		console.log("DB Connected")
 		app.listen(PORT, () => console.log(`open http://${HOST}:${PORT}`))
-		server.listen(4000, () => console.log(`socket http://${HOST}:4000`))
+		server.listen(SOCKET_PORT, () => console.log(`socket http://${HOST}:${SOCKET_PORT}`))
 	})
 	.catch(() => console.log("db NOT connected"))

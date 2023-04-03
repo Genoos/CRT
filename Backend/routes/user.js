@@ -17,7 +17,6 @@ app.route("/login").post(async (req, res) => {
 
 app.route("/register").post(async (req, res) => {
 	let data = await userController.createUser(req.body)
-
 	if (data["email"]) {
 		res.status(200).json(data)
 	} else {
@@ -26,8 +25,6 @@ app.route("/register").post(async (req, res) => {
 })
 
 app.route("/cars").post(async (req, res) => {
-	console.log("Y")
-	console.log(req.body)
 	let data = await userController.getCars(req.body)
 	res.status(200).json(data)
 })

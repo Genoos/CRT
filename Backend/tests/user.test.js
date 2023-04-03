@@ -6,7 +6,7 @@ import user from "../routes/user.js";
 const app = new express();
 app.use("/user", user);
 
-describe("TESTS", () => {
+describe("TESTS USER", () => {
 	beforeAll(async () => {
 		await mongoose.connect(
 			"mongodb+srv://batch6:herovired@cluster0.aqifkg2.mongodb.net/DarwinBox2"
@@ -61,4 +61,12 @@ describe("TESTS", () => {
 		const response = await request(app).post("/user/bookcar").send(car);
 		expect(response.statusCode).toEqual(200);
 	});
+
+	test("POST /user/cars", async () => {
+		const user = {
+			email: "sandyblaze911@gmail.com"
+		}
+		const response = await request(app).post("/user/cars").send(user);
+		expect(response.statusCode).toEqual(200)
+	})
 });

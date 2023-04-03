@@ -34,12 +34,12 @@ function renderMap() {
     map = L.map('map').setView([loc.lat, loc.lng], 15)
     L.tileLayer('https://tile.openstreetmap.org/{z}/{x}/{y}.png', {
         maxZoom: 19,
-        attribution: `
-            <div>
-                <button onclick="focusIt()" id="focusIt"> 
-                    <img src="/home/sandeepkumar.b/project/CRT/img/target-icon.svg" />
-                </button>
-            </div>`
+        // attribution: `
+        //     <div>
+        //         <button onclick="focusIt()" id="focusIt"> 
+        //             <img src="/home/sandeepkumar.b/project/CRT/img/target-icon.svg" />
+        //         </button>
+        //     </div>`
     }).addTo(map);
     let CarIcon = L.Icon.extend({
         options: {
@@ -85,9 +85,7 @@ function renderMap() {
 }
 
 function focusIt() {
-    map.off()
-    map.remove()
-    renderMap()
+    
 }
 
 function getCoords(flag) {
