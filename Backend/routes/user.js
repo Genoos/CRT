@@ -20,7 +20,30 @@ app.route("/login").post(async (req, res) => {
 		res.status(200).json({ errno: 404, message: "Data not found" })
 	}
 })
-
+app.route("/addCoupon").post(async (req, res) => {
+	let data = await userController.addCoupon(req.body)
+	if (data) {
+		res.status(200).json(data)
+	} else {
+		res.status(200).json({ errno: 404, message: "Error in adding coupon" })
+	}
+})
+app.route("/getCoupon").get(async (req, res) => {
+	let data = await userController.getCoupon()
+	if (data) {
+		res.status(200).json(data)
+	} else {
+		res.status(200).json({ errno: 404, message: "Coupon not found" })
+	}
+})
+app.route("/updateCoupon").post(async (req, res) => {
+	let data = await userController.updateCoupon(req.body)
+	if (data) {
+		res.status(200).json(data)
+	} else {
+		res.status(200).json({ errno: 404, message: "Error in updating coupon" })
+	}
+})
 app.route("/register").post(async (req, res) => {
 	let data = await userController.createUser(req.body)
 	if (data["email"]) {
