@@ -1,7 +1,7 @@
 import ARSUser from "../models/user.js"
 import ARSCar from "../models/car.js"
 import ARSBooking from "../models/booking.js"
-
+import ARSCoupon from "../models/coupon.js"
 export default function UserController() {
     return {
         authenticate: async function ({ email, passwd }) {
@@ -49,13 +49,36 @@ export default function UserController() {
                 return { ...e, errno: 400 }
             }
         },
-        getCars: async function ({ _id }) {
+        getCoupon: async function (){
+            const coupon = await ARSCoupon.find()
+            return coupon
+        },
+        addCoupon: async function({ coupon_code,discount_percent}){
+            var coupon = new ARSCoupon({
+                coupon_code: coupon_code,
+                discount_percent: discount_percent,
+            })
             try {
-                const data = await ARSUser.findOne({ _id: _id })
-                return { host: data.host, car_booked: data.car_booked }
+                var result = await coupon.save()
+                return result
             } catch (e) {
-                return { ...e, errno: 404 }
+                return e
             }
+        },
+        updateCoupon:async function({id,coupon_code}){
+            try{
+            const coupon = await ARSCoupon.findOneAndUpdate({coupon_code : coupon_code},{
+                $push: {
+                    coupon_used: {
+                        id:id
+                    }
+                }
+            })
+            return coupon
+        }
+        catch(e){
+            return e
+        }
         },
         bookCar: async function ({ car_no, email, from_date, from_time, to_date, to_time }) {
             try {
