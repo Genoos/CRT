@@ -12,6 +12,9 @@ function display(id) {
 	$.ajax({
 		type: "POST",
 		url: "http://127.0.0.1:3000/car/view",
+		headers: {
+            'token': localStorage.getItem('token'),
+        },
 		contentType: "application/json",
 		data: JSON.stringify({ car_no: id }),
 		dataType: "json",
@@ -64,6 +67,9 @@ function bookDisplay(id) {
 	$.ajax({
 		type: "POST",
 		url: "http://127.0.0.1:3000/car/view",
+		headers: {
+            'token': localStorage.getItem('token'),
+        },
 		contentType: "application/json",
 		data: JSON.stringify({ car_no: id }),
 		dataType: "json",
@@ -131,6 +137,9 @@ function PostData() {
 	$.ajax({
 		type: "POST",
 		url: "http://127.0.0.1:3000/user/cars",
+		headers: {
+            'token': localStorage.getItem('token'),
+        },
 		contentType: "application/json",
 		data: JSON.stringify(data),
 		dataType: "json",
@@ -183,6 +192,9 @@ function PostData() {
 	$.ajax({
 		type: "POST",
 		url: "http://127.0.0.1:3000/user/profile",
+		headers: {
+            'token': localStorage.getItem('token'),
+        },
 		contentType: "application/json",
 		data: JSON.stringify({ email: email }),
 		dataType: "json",
@@ -211,6 +223,9 @@ function changeProfile() {
 		$.ajax({
 			type: "POST",
 			url: "http://127.0.0.1:3000/user/upload",
+			headers: {
+				'token': localStorage.getItem('token'),
+			},
 			contentType: false,
 			processData: false,
 			data: formData,

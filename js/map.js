@@ -4,6 +4,8 @@
 
 
 let prev = [0, 0]
+let call = true
+let car_no = localStorage.getItem('car_no')
 
 let loc = {
     lat: 20.5937, lng: 78.9629
@@ -14,15 +16,14 @@ let user, pos
 
 let n = 0
 
-let arr = []
+// let arr = []
 
 let map, marker, user_marker, routeControl = null
 
 function changeLocation(lat, lng, routeControl) {
-    n += 10
     loc.lat = lat
     loc.lng = lng
-    pos = new L.LatLng(arr[n].lat, arr[n].lng)
+    pos = new L.LatLng(lat, lng)
     routeControl.setWaypoints([
         pos,
         routeControl.options.waypoints[1],
@@ -76,16 +77,35 @@ function renderMap() {
             }
         }
     }).on('routesfound', function (e) {
-        if (arr.length == 0) {
+
+        if (call) {
+            let arr = []
             for (const obj of e.routes[0].coordinates) {
                 arr.push({ lat: obj.lat, lng: obj.lng })
             }
+            $.ajax({
+                type: 'POST',
+                url: 'http://localhost:5000/',
+                contentType: 'application/json',
+                data: JSON.stringify({ car_no: car_no, points: arr }),
+                dataType: 'json',
+                success: function (result) {
+                    console.log(result)
+                }
+            })
+            call = false
         }
+
+        // if (arr.length == 0) {
+        //     for (const obj of e.routes[0].coordinates) {
+        //         arr.push({ lat: obj.lat, lng: obj.lng })
+        //     }
+        // }
     }).addTo(map)
 }
 
 function focusIt() {
-    
+
 }
 
 function getCoords(flag) {
@@ -119,9 +139,12 @@ function getCoords(flag) {
 }
 
 function simulateTravelling() {
-    // setInterval(getCoords, 5000, false)
-    // let n = 0
-    setInterval(changeLocation, 1000, arr[n].lat, arr[n].lng, routeControl)
+    let socket = io('http://0.0.0.0:4000')
+    socket.emit('connected', car_no)
+    socket.on('loction', function (data) {
+        console.log(data)
+        changeLocation(data.latitude, data.longitude, routeControl)
+    })
 }
 
 $(document).ready(function () {

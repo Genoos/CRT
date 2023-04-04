@@ -21,8 +21,12 @@ function fetchData(data) {
             if (result.errno != undefined) {
                 alert("Username or password incorrect")
             } else {
+                localStorage.setItem("token", result.jwt)
+                localStorage.setItem("_id", result._id)
                 localStorage.setItem("email", result.email)
                 localStorage.setItem("picture", result.picture)
+                localStorage.setItem("phone", result.phone)
+                localStorage.setItem("track", 'TS12PQ5912')
                 localStorage.setItem("user_data", JSON.stringify(result))
                 location.href = "home.html"
             }

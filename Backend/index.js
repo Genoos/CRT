@@ -5,13 +5,15 @@ import cors from "cors"
 import mongoose from "mongoose"
 import config from "config"
 import { Server } from "socket.io"
+import dotenv from "dotenv"
 import http from "http"
 import CarsController from "./controllers/car.js"
+dotenv.config()
 
-const HOST = config.get("server.host")
-const PORT = config.get("server.port")
-const MONGO_URL = config.get("mongo.url")
-const SOCKET_PORT = config.get("socket.port")
+const HOST = process.env.HOST || config.get("server.host")
+const PORT = process.env.PORT || config.get("server.port")
+const MONGO_URL = process.env.MONGODB || config.get("mongo.url")
+const SOCKET_PORT = process.env.SOCKET || config.get("socket.port")
 
 const app = express()
 app.use(cors())
@@ -40,17 +42,17 @@ const io = new Server(server, {
 })
 
 io.on("connection", function (socket) {
-	console.log(socket.id)
+	console.log(socket.id + ' : connection')
 	socket.on("connected", (car_id) => {
 		socket.join(car_id)
 		cache.set(socket.id, car_id)
 	})
 	socket.on("change", (car_id, lat, lng) => {
-		carController.setCarLocation({
-			car_id: car_id,
-			latitude: lat,
-			longitude: lng
-		})
+		// carController.setCarLocation({
+		// 	car_id: car_id,
+		// 	latitude: lat,
+		// 	longitude: lng
+		// })
 		socket.to(car_id).emit("loction", {
 			latitude: lat,
 			longitude: lng

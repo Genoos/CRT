@@ -126,6 +126,9 @@ function onLoad({ car_no }) {
     $.ajax({
         type: "POST",
         url: "http://127.0.0.1:3000/car/view",
+        headers: {
+            'token': localStorage.getItem('token'),
+        },
         contentType: 'application/json',
         data: JSON.stringify(data),
         dataType: 'json',
@@ -168,6 +171,9 @@ function bookCar({ car_no, email, from_date, from_time, to_date, to_time }) {
     $.ajax({
         type: "POST",
         url: "http://127.0.0.1:3000/user/bookcar",
+        headers: {
+            'token': localStorage.getItem('token'),
+        },
         contentType: 'application/json',
         data: JSON.stringify(data),
         dataType: 'json',
