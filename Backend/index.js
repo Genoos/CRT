@@ -1,6 +1,7 @@
 import express from "express"
 import user from "./routes/user.js"
 import car from "./routes/car.js"
+import admin from "./routes/admin.js"
 import cors from "cors"
 import mongoose from "mongoose"
 import config from "config"
@@ -8,6 +9,7 @@ import { Server } from "socket.io"
 import dotenv from "dotenv"
 import http from "http"
 import CarsController from "./controllers/car.js"
+import coupon from "./routes/coupon.js"
 dotenv.config()
 
 const HOST = process.env.HOST || config.get("server.host")
@@ -28,6 +30,8 @@ app.get("/", (req, res) => {
 
 app.use("/user", user)
 app.use("/car", car)
+app.use("/admin", admin)
+app.use("/coupon", coupon)
 
 // ------------------------ socket --------------------------
 

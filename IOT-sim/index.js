@@ -22,7 +22,7 @@ app.post('/', async (req, res) => {
 socket.on('connect', function () {
     console.log('connected');
     setInterval(() => {
-        if (arr.length > 0) {
+        if (arr.length > 0 && i < n) {
             socket.emit('change', car, arr[i].lat, arr[i++].lng);
         }
     }, 1000)

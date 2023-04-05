@@ -118,6 +118,7 @@ const carSchema = new mongoose.Schema({
 
 
 carSchema.index({ car_no: 1 }, { unique: true })
+carSchema.index({ owner: 1, car_no: 1 }, { unique: true })
 carSchema.index({ location: "2d" })
 
 

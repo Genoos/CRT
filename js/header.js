@@ -4,7 +4,8 @@ $(document).ready(function () {
         var new_loc = localStorage.getItem('location')
         $("#user_location").text(new_loc ? new_loc : "Select Location")
         var user_data = localStorage.getItem("user_data")
-        if (!user_data) {
+        var email = localStorage.getItem("email")
+        if (email == undefined) {
             return
         }
         user_data = JSON.parse(user_data)

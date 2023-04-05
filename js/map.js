@@ -3,7 +3,6 @@
  */
 
 
-let prev = [0, 0]
 let call = true
 let car_no = localStorage.getItem('car_no')
 
@@ -116,16 +115,17 @@ function getCoords(flag) {
     $.ajax({
         type: "GET",
         url: `http://127.0.0.1:3000/car/location/${car}`,
+        headers: {
+            token: localStorage.getItem('token')
+        },
         success: function (coords) {
             if (coords.errno != undefined) {
                 alert('car no found')
                 location.href = './home.html'
             } else {
-                if (prev[0] == coords.location[0] && prev[1] == coords.location[1]) {
-                    return
-                }
-                prev = coords.location
                 console.log(coords)
+                loc.lat = coords.location[0]
+                loc.lng = coords.location[1]
                 // changeLocation(coords.location[0], coords.location[1])
                 if (flag) {
                     pos = new L.LatLng(loc.lat, loc.lng)

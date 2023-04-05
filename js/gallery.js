@@ -61,6 +61,11 @@ function onLoad({ latitude, longitude, kms }) {
 }
 
 function loadCars(value) {
+    var email = localStorage.getItem("email")
+    console.log(email)
+    if (email == undefined) {
+        location.href = "login.html"
+    }
     $('#display-km').text(value)
     navigator.geolocation
         .getCurrentPosition(function (data) {

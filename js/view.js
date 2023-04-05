@@ -1,5 +1,7 @@
 var promocode = "abc123"
 var promostatus = ""
+var gcode = ""
+var promo = false
 var price_per_hour = 100
 var price_per_day = 1600
 var price = $("#price").text();
@@ -70,20 +72,22 @@ $("#end_date").change(generatePrice);
 $("#start_time").change(generatePrice);
 $("#end_time").change(generatePrice);
 
-// apply the discount
-$("#button-addon2").click(function () {
-    if (($("#entercode").prop("disabled") && $('#button-addon2').text() == 'Apply') || ($('#price').text() == "₹" + "--")) {
-        return
-    }
+function applyDiscount(promocode, name, value, message) {
     if (promostatus == "") {
         var enteredPromocode = $("#entercode").val()
         if (promocode == enteredPromocode) {
             let actual_price = price;
             actual_price = actual_price.substring(1)
             actual_price = parseInt(actual_price)
-            let discount_price = actual_price - Math.ceil((actual_price * 50) / 100)
+            let discount_price = actual_price
+            if (name == 'amount') {
+                discount_price = Math.max(discount_price - value, 0)
+            } else if (name == 'percentage') {
+                discount_price -= Math.ceil((actual_price * value) / 100)
+            }
             $("#price").text("₹" + discount_price)
             promostatus = "applied"
+            gcode = promocode
             promocode = ""
             //Change the button to remove promo
             $('#button-addon2').css({
@@ -94,9 +98,12 @@ $("#button-addon2").click(function () {
             $('#promocodestatus').empty();
             $("#promocodestatus").append('<small class="promo-valid" style="color:#7AB730;">Promo Sucessfully Applied</small>')
             $("#entercode").prop('disabled', true);
+            promo = true
         } else {
             $('#promocodestatus').empty();
-            $("#promocodestatus").append('<small class="promo-invalid" style="color: rgb(199, 35, 35);">Promo invalid</small>')
+            $("#promocodestatus").append(`<small class="promo-invalid" style="color: rgb(199, 35, 35);">${message}</small>`)
+            promo = false
+            gcode = ""
         }
     } else {
         $("#entercode").prop('disabled', false);
@@ -106,12 +113,51 @@ $("#button-addon2").click(function () {
             'background-color': '#7AB730',
         });
         $("#button-addon2").text("Apply")
-        promocode = "abc123"
+        promocode = ""
         promostatus = ""
         $('#promocodestatus').empty();
         $("#promocodestatus").append('<small class="promo-invalid" style="color: #7AB730;">Promo Removed</small>')
         $("#priceGenerator").click()
+        promo = false
+        gcode = ""
     }
+}
+
+// apply the discount
+$("#button-addon2").click(function () {
+    if (($("#entercode").prop("disabled") && $('#button-addon2').text() == 'Apply') || ($('#price').text() == "₹" + "--")) {
+        return
+    }
+    if (promostatus != "") {
+        applyDiscount(null, null, null, null)
+        return
+    }
+    const data = {
+        _id: localStorage.getItem('_id'),
+        coupon_code: $("#entercode").val()
+    }
+    $.ajax({
+        type: "POST",
+        url: "http://127.0.0.1:3000/coupon/apply",
+        headers: {
+            'token': localStorage.getItem('token'),
+        },
+        contentType: 'application/json',
+        data: JSON.stringify(data),
+        dataType: 'json',
+        success: function (result) {
+            console.log(result)
+            if (result.errno != undefined) {
+                alert("Something went wrong")
+            } else {
+                if (result.message != undefined) {
+                    applyDiscount(undefined, undefined, undefined, result.message)
+                } else {
+                    applyDiscount(result.coupon_code, result.discount.name, result.discount.value, undefined)
+                }
+            }
+        }
+    })
 })
 
 console.log(localStorage.getItem("car_no"))
@@ -166,7 +212,8 @@ function bookCar({car_no, email, from_date, from_time, to_date, to_time }) {
         from_date: from_date,
         from_time: from_time,
         to_date: to_date,
-        to_time: to_time
+        to_time: to_time,
+        coupon_code: gcode
     }
     $.ajax({
         type: "POST",
@@ -195,7 +242,6 @@ function submit() {
     for (const [k, v] of formData.entries()) {
         data[k] = v
     }
-    console.log(data)
     /**
      * validate here 
      */
@@ -211,6 +257,5 @@ function submit() {
             return
         }
     }
-    console.log(data)
     bookCar(data)
 }

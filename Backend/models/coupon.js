@@ -1,22 +1,29 @@
-import mongoose, { Schema } from "mongoose"
-import ARSUser from './user.js'
+import mongoose from "mongoose"
+
 const couponSchema = new mongoose.Schema({
     coupon_code: {
         type: String,
         required: true,
     },
-    discount_percent: {
-        type: Number,
+    coupon_name: {
+        type: String,
         required: true,
     },
-    coupon_used :{
-        type:[{
-            id:{
-                type: Schema.Types.ObjectId,
-                ref: ARSUser,
+    discount: {
+        type: {
+            name: {
+                type: String,
+                required: true,
+                enum: ['amount', 'percentage']
+            },
+            value: {
+                type: Number,
+                required: true,
             }
-        }],
-        default: [],
-    }
+        },
+    },
 })
+
+couponSchema.index({ coupon_code: 1 }, { unique: true })
+
 export default mongoose.model("ARSCoupon", couponSchema)

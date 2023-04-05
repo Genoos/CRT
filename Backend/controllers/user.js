@@ -1,11 +1,14 @@
 import ARSUser from "../models/user.js"
 import ARSCar from "../models/car.js"
 import ARSBooking from "../models/booking.js"
-import ARSCoupon from "../models/coupon.js"
+import CouponController from "./coupon.js"
+
+const couponController = CouponController()
+
 export default function UserController() {
     return {
         authenticate: async function ({ email, passwd }) {
-            const user = await ARSUser.findOne({ email: email, passwd: passwd }, { passwd: 0, host: 0, car_booked: 0 })
+            const user = await ARSUser.findOne({ email: email, passwd: passwd }, { host: 0, car_booked: 0 })
             return user
         },
         createUser: async function ({ name, email, passwd, phone }) {
@@ -49,38 +52,15 @@ export default function UserController() {
                 return { ...e, errno: 400 }
             }
         },
-        getCoupon: async function (){
-            const coupon = await ARSCoupon.find()
-            return coupon
-        },
-        addCoupon: async function({ coupon_code,discount_percent}){
-            var coupon = new ARSCoupon({
-                coupon_code: coupon_code,
-                discount_percent: discount_percent,
-            })
+        getCars: async function ({ _id }) {
             try {
-                var result = await coupon.save()
-                return result
+                const data = await ARSUser.findOne({ _id: _id })
+                return { host: data.host, car_booked: data.car_booked }
             } catch (e) {
-                return e
+                return { errno: 404, ...e }
             }
         },
-        updateCoupon:async function({id,coupon_code}){
-            try{
-            const coupon = await ARSCoupon.findOneAndUpdate({coupon_code : coupon_code},{
-                $push: {
-                    coupon_used: {
-                        id:id
-                    }
-                }
-            })
-            return coupon
-        }
-        catch(e){
-            return e
-        }
-        },
-        bookCar: async function ({ car_no, email, from_date, from_time, to_date, to_time }) {
+        bookCar: async function ({ car_no, email, from_date, from_time, to_date, to_time, coupon_code }) {
             try {
                 const bookings = await ARSCar.findOne({ car_no: car_no }, { booking: 1 })
                 const arr = JSON.parse(JSON.stringify(bookings.booking))
@@ -133,6 +113,12 @@ export default function UserController() {
                     to_time: to_time
                 })
                 await booking_data.save()
+                if (coupon_code != undefined && coupon_code != '') {
+                    await couponController.applyCoupon({
+                        coupon_code: coupon_code,
+                        _id: user_result._id,
+                    })
+                }
                 return {
                     u_id: user_result._id,
                     c_id: car_result._id,
