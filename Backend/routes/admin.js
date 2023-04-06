@@ -29,12 +29,12 @@ app.route('/login')
 
 app.route('/isAdmin')
     .post(async (req, res) => {
-        let data = verify(req.headers)
-        if (data.isAdmin == undefined) {
+        let _v = verify(req.headers)
+        if (!_v || _v.isAdmin == undefined) {
             res.status(400).json({ status: false })
-        } else {
-            res.status(200).json({ status: true })
+            return
         }
+        res.status(200).json({ status: true })
     })
 
 app.route('/add-coupon')
@@ -45,6 +45,16 @@ app.route('/add-coupon')
             return
         }
         res.status(200).json(await adminController.createCoupon(req.body))
+    })
+
+app.route('/get-all-cars')
+    .post(async (req, res) => {
+        let _v = verify(req.headers)
+        if (!_v || _v.isAdmin == undefined) {
+            res.status(400).json({ status: false })
+            return
+        }
+        res.status(200).json(await adminController.getAllCars())
     })
 
 const admin = app
