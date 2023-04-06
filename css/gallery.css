@@ -56,5 +56,9 @@
 }
 
 .b-1 {
-  border: 1px solid #363636;
+  border: 3px solid #766e6e !important;
+}
+
+.fil-btn {
+  text-align: center;
 }
