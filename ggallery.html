@@ -135,14 +135,59 @@
                                 <button type="button" class="btn-close text-reset" data-bs-dismiss="offcanvas"
                                     aria-label="Close"></button>
                             </div>
-                            <div class="offcanvas-body">
-                                <p>Content goes here</p>
-                                <p>Content goes here</p>
-                                <p>Content goes here</p>
-                                <p>Content goes here</p>
-                                <p>Content goes here</p>
-                                <p>Content goes here</p>
-                                <p>Content goes here</p>
+                            <div class="offcanvas-body"> 
+                                
+                                <!-- -------------------------------------------------------------- -->
+                                <p>Cost</p>
+                                <div id="sidecostdiv" class="list" data-cost="150">
+                                    <div>
+                                        <span class="float-start">100</span>
+
+                                    </div>
+                                    <div class="list-item">
+                                        <input id="sidecostinput" type="range" class="form-range filter" min="100" max="1000" id="customRange3">
+                                        
+                                    </div>
+                                    <div>
+                                        <span class="float-end">1000</span>
+                                    </div>
+                                </div>
+                                <p>Filter By</p>
+                        <div id="side4filtersdiv"  data-age="false" data-km="false" data-priceHtL="false" data-priceLtH="false">
+                            <div class="list mb-0">
+                                <input id="sideHtL" style="width: 35px;"  class="list-item mx-1 b-1 " value="High to Low" readonly>
+                                <input id="sideLtH" style="width: 35px;"  class="list-item mx-1 b-1 " value="Low to High" readonly>
+                            </div>
+                            <div class="list mt-0"  >
+                                <input id="sidekms" style="width: 35px;" class="list-item  mx-1 b-1 " value="Kms Driven" readonly>
+                                <input id="sideage" style="width: 35px;" class="list-item mx-1 b-1 " value="Car age" readonly>
+                            </div>
+                        </div>
+                        <p>Seat</p>
+                        <div id="sideseaterdiv" class="list seatfilter" data-checked="null">
+                            <input id="side2-seat" style="width: 20px;" class="list-item mx-1 b-1 "  value="2" readonly>
+                            <hr class="line">
+                            <input id="side4-seat" style="width: 20px;" class="list-item mx-1 b-1 "  value="4" readonly>
+                            <hr class="line">
+                            <input id="side6-seat" style="width: 20px;" class="list-item mx-1 b-1 "  value="6" readonly>
+                        </div>
+                        <p>Car Type</p>
+                        <div id="sidecartypediv" class="list" data-cartype="null">
+                            <input id="sideSUV" style="width: 20px;" class="list-item  mx-1 b-1 filter" value="SUV" readonly>
+                            <hr class="line">
+                            <input id="sideHatchBack" style="width: 20px;" class="list-item  mx-1 b-1 filter" value="HatchBack" readonly>
+                            <hr class="line">
+                            <input id="sideSedan" style="width: 20px;" class="list-item mx-1 b-1 filter" value="Sedan" readonly>
+                        </div>
+                        <p>Transmission</p>
+                        <div id="sidetransmisiondiv" class="list"> 
+                            <input id="sideManual" style="width: 30px;" class="list-item mx-1 b-1 filter" value="Manual" readonly>
+                            <hr class="line">
+                            <input id="sideAutomatic" style="width: 30px;" class="list-item mx-1 b-1 filter" value="Automatic" readonly>
+                        </div>
+                                <!-- -------------------------------------------------------------- -->
+                                
+                                
                             </div>
                         </div>
                     </div>
@@ -151,57 +196,63 @@
         </div>
     </div>
 
+    <!-- Filter options start -->
     <div class="container-fluid">
         <div class="row">
-            <div class="col-lg-3 col-md-6 d-none d-md-block px-5">
+            <div id="filteroptions" class="col-lg-3 col-md-6 d-none d-md-block px-5">
                 <h4>Filter Options</h4>
                 <hr />
-                <div class="sort-by-filter d-flex justify-content-between">
-                    <div class="list-heading">
-                        <h6>Sort By</h6>
-                    </div>
-                    <button class="btn btn-primary reset-btn">Reset</button>
-                </div>
+                
                 <div class="list-items mt-3">
                     <div id="left">
 
                         <p>Filter By</p>
-                        <div>
+                        <div id="4filtersdiv"  data-age="false" data-km="false" data-priceHtL="false" data-priceLtH="false">
                             <div class="list mb-0">
-                                <button class="list-item btn mx-1 b-1" value="90">High To Low</button>
-                                <button class="list-item btn mx-1 b-1" value="90">Low To High</button>
+                                <input id="HtL" style="width: 35px;"  class="list-item mx-1 b-1 " value="High to Low" readonly>
+                                <input id="LtH" style="width: 35px;"  class="list-item mx-1 b-1 " value="Low to High" readonly>
                             </div>
-                            <div class="list mt-0">
-                                <button class="list-item btn mx-1 b-1" value="120">Kms Driven</button>
-                                <button class="list-item btn mx-1 b-1" value="120">Car age</button>
+                            <div class="list mt-0"  >
+                                <input id="kms" style="width: 35px;" class="list-item  mx-1 b-1 " value="Kms Driven" readonly>
+                                <input id="age" style="width: 35px;" class="list-item mx-1 b-1 " value="Car age" readonly>
                             </div>
                         </div>
 
-                        <p>Fuel Cost</p>
-                        <div class="list">
-                            <div class="list-item">Not Included</div>
+                        <p>Cost</p>
+                        <div id="costdiv" class="list" data-cost="150">
+                            <div>
+                                <span class="float-start">100</span>
+
+                            </div>
+                            <div class="list-item">
+                                <input id="costinput" type="range" class="form-range filter" min="100" max="1000" id="customRange3">
+                                
+                            </div>
+                            <div>
+                                <span class="float-end">1000</span>
+                            </div>
                         </div>
                         <p>Seat</p>
-                        <div class="list">
-                            <button class="list-item btn mx-1 b-1" value="2">2</button>
+                        <div id="seaterdiv" class="list seatfilter" data-checked="null">
+                            <input id="2-seat" style="width: 20px;" class="list-item mx-1 b-1 "  value="2" readonly>
                             <hr class="line">
-                            <button class="list-item btn mx-1 b-1" value="4">4</button>
+                            <input id="4-seat" style="width: 20px;" class="list-item mx-1 b-1 "  value="4" readonly>
                             <hr class="line">
-                            <button class="list-item btn mx-1 b-1" value="6">6</button>
+                            <input id="6-seat" style="width: 20px;" class="list-item mx-1 b-1 "  value="6" readonly>
                         </div>
                         <p>Car Type</p>
-                        <div class="list">
-                            <button class="list-item btn mx-1 b-1">SUV</button>
+                        <div id="cartypediv" class="list" data-cartype="null">
+                            <input id="SUV" style="width: 20px;" class="list-item  mx-1 b-1 filter" value="SUV" readonly>
                             <hr class="line">
-                            <button class="list-item btn mx-1 b-1">hatchback</button>
+                            <input id="HatchBack" style="width: 20px;" class="list-item  mx-1 b-1 filter" value="HatchBack" readonly>
                             <hr class="line">
-                            <button class="list-item btn mx-1 b-1">sedan</button>
+                            <input id="Sedan" style="width: 20px;" class="list-item mx-1 b-1 filter" value="Sedan" readonly>
                         </div>
                         <p>Transmission</p>
-                        <div class="list">
-                            <button class="list-item btn mx-1 b-1" onclick="Manual()">Manual</button>
+                        <div id="transmisiondiv" class="list"> 
+                            <input id="Manual" style="width: 30px;" class="list-item mx-1 b-1 filter" value="Manual" readonly>
                             <hr class="line">
-                            <button class="list-item btn mx-1 b-1" onclick="Automatic()">Automatic</button>
+                            <input id="Automatic" style="width: 30px;" class="list-item mx-1 b-1 filter" value="Automatic" readonly>
                         </div>
                         <!-- <p>Delivery Type</p>
                         <div class="list">
@@ -211,65 +262,14 @@
                         </div> -->
                     </div>
 
-                    <table class="w-100" style="padding: 5px;">
-                        <tr>
-                            <td style="margin: 5px;">
-                                <div class="icon w-100">
-                                    <i class="bi bi-filter"></i>
-                                    <p>Relevance</p>
-                                </div>
-                            </td>
-                            <td>
-                                <div class="icon w-100">
-                                    <i class="bi bi-filter"></i>
-                                    <p>Low to High</p>
-                                </div>
-                            </td>
-                            <td>
-                                <div class="icon w-100">
-                                    <i class="bi bi-filter"></i>
-                                    <p>High to Low</p>
-                                </div>
-                            </td>
-                            <td>
-                                <div class="icon w-100">
-                                    <i class="bi bi-filter"></i>
-                                    <p>Best Rated</p>
-                                </div>
-                            </td>
-                        </tr>
-                        <tr>
-                            <td>
-                                <div class="icon w-100">
-                                    <i class="bi bi-filter"></i>
-                                    <p>Distance</p>
-                                </div>
-                            </td>
-                            <td>
-                                <div class="icon w-100">
-                                    <i class="bi bi-filter"></i>
-                                    <p>Car age</p>
-                                </div>
-                            </td>
-                            <td>
-                                <div class="icon w-100">
-                                    <i class="bi bi-filter"></i>
-                                    <p>Kms Driven</p>
-                                </div>
-                            </td>
-                            <td>
-                                <div class="icon w-100">
-                                    <i class="bi bi-filter"></i>
-                                    <p>Popularity</p>
-                                </div>
-                            </td>
-                        </tr>
-                    </table>
+                   
                 </div>
                 <p>Content for the sidebar goes here.</p>
             </div>
+
+            <!-- radius setter start -->
             <div class="col-lg-9 col-md-6">
-                <h2>Main Content</h2>
+                
                 <div class="container-fluid py-5 d-flex justify-content-center">
                     <div class="container col-12">
                         <div class="d-flex justify-content-between">
@@ -280,13 +280,81 @@
                             </button>
                         </div>
                         <h3 class="text-muted">Cars within <span id="display-km">5</span> KM</h3>
-                        <input type="range" style="border: none; box-shadow: none;" class="form-range" min="1" max="25"
-                            step="1" id="km-range" value="5">
+                        <input type="range" style="border: none; box-shadow: none;" class="form-range" min="1" max="50"
+                            step="1" id="km-range" value="15" onclick="loadCars(value)">
                     </div>
                 </div>
+
+
+                    <!-- 4-seater Team Start -->
+                <div class="container-fluid py-5">
+                    <div class="container">
+                    <div class="border-start border-5 border-primary ps-5 mb-5" style="max-width: 600px">
+                        <h3 class="text-primary text-uppercase">4-seater Vehicles</h3>
+                        <!-- <h6 class="text-primary text-uppercase">4-seater Vehicles</h6> -->
+                        <!-- <h1 class="display-5 text-uppercase mb-0">Vehicle for rent</h1> -->
+                    </div>
+                    <div>
+                        <div class="pb-5">
+                        <div id="4-seater">
+
+                        
+                        </div>
+                        </div>
+                    </div>
+                    </div>
+                </div>
+                <!-- 4-seater Team End -->
+
+                <!-- 2-seater Team Start -->
+                <div class="container-fluid py-5">
+                    <div class="container">
+                    <div class="border-start border-5 border-primary ps-5 mb-5" style="max-width: 600px">
+                        <h3 class="text-primary text-uppercase">2-seater Vehicles</h3>
+                        <!-- <h6 class="text-primary text-uppercase">Vehicles</h6> -->
+                        <!-- <h1 class="display-5 text-uppercase mb-0">Vehicle for rent</h1> -->
+                    </div>
+                    <div>
+                        <div class="pb-5">
+                        <div id="2-seater">
+
+                        </div>
+                        </div>
+                    </div>
+                    </div>
+                </div>
+                <!-- 2-seater Team End -->
+
+
+                  <!-- 6-seater Team Start -->
+                <div class="container-fluid py-5">
+                    <div class="container">
+                    <div class="border-start border-5 border-primary ps-5 mb-5" style="max-width: 600px">
+                        <h3 class="text-primary text-uppercase">6-seater Vehicles</h3>
+                        <!-- <h6 class="text-primary text-uppercase">6-seater Vehicles</h6> -->
+                        <!-- <h1 class="display-5 text-uppercase mb-0">Vehicle for rent</h1> -->
+                    </div>
+                    <div>
+                        <div class="pb-5">
+                        <div id="6-seater">
+                    
+                        </div>
+                        </div>
+                    </div>
+                    </div>
+                </div>
+                </div>
+                <!-- 6-seater Team End -->
+
+
             </div>
+            <!-- radius setter end -->
         </div>
     </div>
+    <!-- Filter options end -->
+
+
+    
 
 
     <!-- Footer Start -->

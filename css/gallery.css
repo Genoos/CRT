@@ -3,17 +3,6 @@
   cursor: pointer;
 }
 
-table {
-  text-align: center;
-}
-
-td {
-  align-items: center;
-  margin: 5px !important;
-  border-radius: 3px;
-  border: 1px solid rgb(117, 120, 113);
-}
-
 #left {
   width: 300px;
   height: 650px;
@@ -44,7 +33,6 @@ td {
   padding: 3px;
   background: #f5f5f5;
 }
-
 
 .list-item {
   height: 30px;
