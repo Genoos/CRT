@@ -1,5 +1,11 @@
+localStorage.removeItem("search_car");
+localStorage.removeItem("single_car");
 function view(car_no) {
-  localStorage.setItem("car_no", car_no);
+  var c = card_cars.find((car) => car.car_no == car_no);
+  if (c != undefined) {
+    localStorage.removeItem("single_car");
+    localStorage.setItem("single_car", JSON.stringify(c));
+  }
   location.href = "view.html";
 }
 
@@ -49,6 +55,9 @@ function getOneCar({ car_no }) {
     data: JSON.stringify(data),
     dataType: "json",
     success: function (car) {
+      localStorage.removeItem("search_car");
+      localStorage.setItem("search_car", JSON.stringify(car));
+      console.log("car set in local", car);
       $(".one-car").empty();
       if (car.errno != undefined) {
         alert("No such car present");
@@ -95,7 +104,7 @@ function getOneCar({ car_no }) {
                       </div>
                     </div>
                 </div>
-                <button class="btn btn-primary">View Car</button>
+                <button class="btn btn-primary" onclick="view('${car.car_no}')">View Car</button>
             </div>
           </div>
         </div>
@@ -214,47 +223,47 @@ function setCardCars(cars) {
   $(".card-cars").empty();
   for (const car of cars) {
     $(".card-cars").append(`
-      <div class="col-lg-3 col-md-5 col-10 py-5 mx-5">
-        <div class="card" class="col-12">
-          <img class="card-img-top" src="${car.car_picture}" alt="Card image cap" />
-          <div class="card-body">
-              <h5 class="card-title">Car No. ${car.car_no}</h5>
-              <div class="d-flex">
-                  <div class="col-12">
-                    <div class="d-flex">
-                      <p class="col-6">Company: </p>
-                      <p class="col-6">${car.company} ${car.model}</p>
-                    </div>
-                    <div class="d-flex">
-                      <p class="col-6">Daily cost: </p>
-                      <p class="col-6">${car.price_per_day}</p>
-                    </div>
-                    <div class="d-flex">
-                      <p class="col-6">Hourly cost: </p>
-                      <p class="col-6">${car.price_per_hour}</p>
-                    </div>
-                    <div class="d-flex">
-                      <p class="col-6">Manifactured in: </p>
-                      <p class="col-6">${car.manifactured_year}</p>
-                    </div>
-                    <div class="d-flex">
-                      <p class="col-6">Distance Driven: </p>
-                      <p class="col-6">${car.driven_distance}</p>
-                    </div>
-                    <div class="d-flex">
-                      <p class="col-6">Transmission Type: </p>
-                      <p class="col-6">${car.transmision}</p>
-                    </div>
-                    <div class="d-flex">
-                      <p class="col-6">Seater Type: </p>
-                      <p class="col-6">${car.seater_type}</p>
-                    </div>
-                  </div>
+    <div class="col-lg-3 col-md-5 col-10 py-5 mx-5">
+    <div class="card" class="col-12">
+      <img class="card-img-top" src="${car.car_picture}" alt="Card image cap" />
+      <div class="card-body">
+          <h5 class="card-title">Car No. ${car.car_no}</h5>
+          <div class="d-flex">
+              <div class="col-12">
+                <div class="d-flex">
+                  <p class="col-6">Company: </p>
+                  <p class="col-6">${car.company} ${car.model}</p>
+                </div>
+                <div class="d-flex">
+                  <p class="col-6">Daily cost: </p>
+                  <p class="col-6">${car.price_per_day}</p>
+                </div>
+                <div class="d-flex">
+                  <p class="col-6">Hourly cost: </p>
+                  <p class="col-6">${car.price_per_hour}</p>
+                </div>
+                <div class="d-flex">
+                  <p class="col-6">Manifactured in: </p>
+                  <p class="col-6">${car.manifactured_year}</p>
+                </div>
+                <div class="d-flex">
+                  <p class="col-6">Distance Driven: </p>
+                  <p class="col-6">${car.driven_distance}</p>
+                </div>
+                <div class="d-flex">
+                  <p class="col-6">Transmission Type: </p>
+                  <p class="col-6">${car.transmision}</p>
+                </div>
+                <div class="d-flex">
+                  <p class="col-6">Seater Type: </p>
+                  <p class="col-6">${car.seater_type}</p>
+                </div>
               </div>
-              <button class="btn btn-primary">View Car</button>
           </div>
-        </div>
+          <button class="btn btn-primary" onclick="view('${car.car_no}')">View Car</button>
       </div>
+    </div>
+  </div>
     `);
   }
 }

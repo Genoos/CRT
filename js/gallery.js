@@ -147,7 +147,7 @@ function setCardCars(cars) {
                     </div>
                   </div>
               </div>
-              <button class="btn btn-primary">View Car</button>
+              <button class="btn btn-primary" onclick="view('${car.car_no}')">View Car</button>
           </div>
         </div>
       </div>
