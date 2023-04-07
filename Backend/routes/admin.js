@@ -64,6 +64,7 @@ app.route('/get-some-cars')
             res.status(400).json({ status: false })
             return
         }
+        res.status(200).json(await adminController.getSomeCars(req.body))
     })
 
 const admin = app
