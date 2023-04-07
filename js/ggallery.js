@@ -102,12 +102,31 @@ function setHourCost(value) {
 
 function rearrangeArray() {
   let filters = [];
+  asc = false;
+  des = false;
+  ageflag = false;
+  kmsflag = false;
+  pricearray = [];
   for (const [key, val] of filter_attributes.entries()) {
-    filters.push([key, val]);
+    console.log(key, val);
+    if (key == "topfilters") {
+      if (val == "HtL") {
+        asc = true;
+      } else if (val == "LtH") {
+        des = true;
+      } else if (val == "age") {
+        ageflag = true;
+      } else if (val == "kms") {
+        kmsflag = true;
+      }
+    } else {
+      filters.push([key, val]);
+    }
   }
   display_cars = [];
   for (const car of card_cars) {
     let flag = true;
+
     for (const i of filters) {
       if (car[i[0]] != i[1]) {
         flag = false;
@@ -116,7 +135,20 @@ function rearrangeArray() {
     }
     if (flag && car.price_per_hour <= hour_cost) display_cars.push(car);
   }
-  console.log(display_cars.length);
+  if (asc) {
+    display_cars.sort((b, a) => a.price_per_hour - b.price_per_hour);
+  } else if (des) {
+    display_cars.sort((b, a) => b.price_per_hour - a.price_per_hour);
+  } else if (ageflag) {
+    display_cars.sort((a, b) => a.manifactured_year - b.manifactured_year);
+  } else if (kmsflag) {
+    display_cars.sort((a, b) => a.driven_distance - b.driven_distance);
+  }
+  for (const car of display_cars) {
+    pricearray.push(car.price_per_hour);
+  }
+  console.log(pricearray);
+  // console.log(display_cars.length);
   $("#cars-ava").text(display_cars.length);
   setCardCars(display_cars);
 }
@@ -124,18 +156,20 @@ function rearrangeArray() {
 $(".fil-btn").click(function () {
   let id = $(this).attr("id");
   let name = $(this).attr("name");
+
   let [key, value] = [name, id];
   $(`.${key}`).css("color", "#666666");
   $(`.${key}`).css("background-color", "#FFFFFF");
   if (filter_attributes.has(key) && filter_attributes.get(key) == value) {
     filter_attributes.delete(key);
     $(this).css("color", "#666666");
+    $(this).css("background-color", "white");
   } else {
     filter_attributes.set(key, value);
     $(this).css("color", "white");
     $(this).css("background-color", "green");
   }
-  console.log(filter_attributes);
+  // console.log(filter_attributes);
   rearrangeArray();
 });
 
