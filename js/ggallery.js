@@ -73,265 +73,7 @@
 //     transmision: "Automatic",
 //   },
 // ];
-RadiusCars = [];
-
-var cartype = null;
-var seat = null;
-var age = null;
-var km = null;
-var HtL = false;
-var LtH = false;
-var cost = null;
-var transmision = null;
-
-//Seat filter
-$(document).ready(function () {
-  console.log("r");
-  $("#2-seat").click(function () {
-    if ($("#seaterdiv").data("checked") == 2) {
-      $("#seaterdiv").data("checked", null);
-
-      $("#2-seat").css("background-color", "white");
-      seat = null;
-    } else {
-      $("#seaterdiv").data("checked", 2);
-      $("#2-seat").css("background-color", "green");
-      $("#6-seat").css("background-color", "white");
-      $("#4-seat").css("background-color", "white");
-    }
-  });
-
-  $("#4-seat").click(function () {
-    if ($("#seaterdiv").data("checked") == 4) {
-      $("#seaterdiv").data("checked", null);
-      $("#4-seat").css("background-color", "white");
-      seat = null;
-    } else {
-      $("#seaterdiv").data("checked", 4);
-      $("#4-seat").css("background-color", "green");
-      $("#2-seat").css("background-color", "white");
-      $("#6-seat").css("background-color", "white");
-    }
-  });
-
-  $("#6-seat").click(function () {
-    if ($("#seaterdiv").data("checked") == 6) {
-      $("#seaterdiv").data("checked", null);
-      $("#6-seat").css("background-color", "white");
-      seat = null;
-    } else {
-      $("#seaterdiv").data("checked", 6);
-      $("#6-seat").css("background-color", "green");
-      $("#2-seat").css("background-color", "white");
-      $("#4-seat").css("background-color", "white");
-    }
-    console.log(6);
-  });
-
-  $(".seatfilter").click(function () {
-    seat = $("#seaterdiv").data("checked");
-
-    console.log("at seatfilter", seat);
-    mainfilter();
-  });
-});
-
-// Age,km,HtL,LtH filter
-$(document).ready(function () {
-  $("#age").click(function () {
-    if ($("#4filtersdiv").data("age") == true) {
-      $("#4filtersdiv").data("age", false);
-      $("#age").css("background-color", "white");
-      age = null;
-    } else {
-      $("#4filtersdiv").data("age", true);
-      $("#age").css("background-color", "green");
-      age = true;
-      console.log("age set");
-    }
-  });
-  $("#kms").click(function () {
-    if ($("#4filtersdiv").data("km") == true) {
-      $("#4filtersdiv").data("km", false);
-      $("#kms").css("background-color", "white");
-      km = false;
-    } else {
-      $("#4filtersdiv").data("km", true);
-      $("#kms").css("background-color", "green");
-      km = true;
-      console.log("km set");
-    }
-  });
-  $("#HtL").click(function () {
-    console.log("test");
-    console.log($("#4filtersdiv").data("priceHtL"));
-    if ($("#4filtersdiv").data("priceHtL")) {
-      console.log("back be white");
-      $("#4filtersdiv").data("priceHtL", false);
-      $("#HtL").css("background-color", "white");
-      HtL = false;
-    } else {
-      $("#4filtersdiv").data("priceHtL", true);
-      HtL = true;
-      LtH = false;
-      $("#4filtersdiv").data("priceLtH", false);
-      $("#LtH").css("background-color", "white");
-      $("#HtL").css("background-color", "green");
-      console.log("priceHtL set");
-    }
-  });
-  $("#LtH").click(function () {
-    if ($("#4filtersdiv").data("priceLtH") == true) {
-      $("#4filtersdiv").data("priceLtH", false);
-      $("#LtH").css("background-color", "white");
-      LtH = false;
-    } else {
-      $("#4filtersdiv").data("priceLtH", true);
-      $("#LtH").css("background-color", "green");
-
-      LtH = true;
-      HtL = false;
-      $("#4filtersdiv").data("priceHtL", false);
-      $("#HtL").css("background-color", "white");
-      console.log("priceLtH set");
-    }
-  });
-
-  $("#4filtersdiv").click(function () {
-    mainfilter();
-  });
-});
-
-//Cost filter
-
-$(document).ready(function () {
-  $("#costinput").click(function () {
-    $("#costdiv").data("cost", $("#costinput").val());
-    cost = $("#costdiv").data("cost");
-
-    mainfilter();
-  });
-});
-
-// cartype filter
-$(document).ready(function () {
-  $("#SUV").click(function () {
-    if ($("#cartypediv").data("cartype") == "SUV") {
-      $("#cartypediv").data("cartype", null);
-      $("#SUV").css("background-color", "white");
-      mainfilter();
-      cartype = null;
-    } else {
-      $("#cartypediv").data("cartype", "SUV");
-      $("#SUV").css("background-color", "green");
-      cartype = "SUV";
-      mainfilter();
-    }
-  });
-
-  $("#Sedan").click(function () {
-    2;
-    if ($("#cartypediv").data("cartype") == "Sedan") {
-      $("#cartypediv").data("cartype", null);
-      $("#Sedan").css("background-color", "white");
-      mainfilter();
-      cartype = null;
-    } else {
-      $("#cartypediv").data("cartype", "Sedan");
-      $("#Sedan").css("background-color", "green");
-      mainfilter();
-      cartype = "Sedan";
-    }
-
-    console.log("sedan");
-  });
-
-  $("#HatchBack").click(function () {
-    if ($("#cartypediv").data("cartype") == "HatchBack") {
-      $("#cartypediv").data("cartype", null);
-      $("#HatchBack").css("background-color", "white");
-      mainfilter();
-      cartype = null;
-    } else {
-      $("#cartypediv").data("cartype", "HatchBack");
-      $("#HatchBack").css("background-color", "green");
-      cartype = "HatchBack";
-      mainfilter();
-    }
-    console.log("hatchback");
-  });
-});
-
-// Transmision filter
-$(document).ready(function () {
-  $("#Manual").click(function () {
-    if ($("#transmisiondiv").data("transmision") == "Manual") {
-      $("#transmisiondiv").data("transmision", null);
-      $("#Manual").css("background-color", "white");
-      transmision = null;
-    } else {
-      $("#transmisiondiv").data("transmision", "Manual");
-      transmision = "Manual";
-      $("#Manual").css("background-color", "green");
-    }
-  });
-  $("#Automatic").click(function () {
-    if ($("#transmisiondiv").data("transmision") == "Automatic") {
-      $("#transmisiondiv").data("transmision", null);
-      $("#Automatic").css("background-color", "white");
-      transmision = null;
-    } else {
-      $("#transmisiondiv").data("transmision", "Automatic");
-      transmision = $("#transmisiondiv").data("transmision");
-      $("#Automatic").css("background-color", "green");
-    }
-  });
-});
-$(document).ready(function () {
-  $("#transmisiondiv").click(function () {
-    mainfilter();
-  });
-});
-
-// Combined filter
-function mainfilter() {
-  if (seat != null) {
-    cars = RadiusCars.filter(function (car) {
-      return car.seater_type == seat;
-    });
-  }
-
-  if (age != null) {
-    cars = cars.filter(function (car) {
-      return car.age <= age;
-    });
-  }
-  if (km != null) {
-    cars = cars.filter(function (car) {
-      return car.driven_distance <= km;
-    });
-  }
-  if (cartype != null) {
-    cars = cars.filter(function (car) {
-      return car.car_type == cartype;
-    });
-  }
-  if (transmision != null) {
-    cars = cars.filter(function (car) {
-      return car.transmision == transmision;
-    });
-  }
-  if (HtL) {
-    cars.sort(function (a, b) {
-      return b.price_per_hour - a.price_per_hour;
-    });
-  } else if (LtH) {
-    cars.sort(function (a, b) {
-      return a.price_per_hour - b.price_per_hour;
-    });
-  }
-  Rerender(cars);
-}
+RadiusCars = []
 
 function view(car_no) {
   localStorage.setItem("car_no", car_no);
@@ -357,41 +99,13 @@ function onLoad({ latitude, longitude, kms }) {
     data: JSON.stringify(data),
     dataType: "json",
     success: function (result) {
+      card_cars = result
       RadiusCars = result;
-
       if (result.errno != undefined) {
         alert("No cars avaliable");
       } else {
-        console.log(result);
-        $("#6-seater").empty();
-        $("#4-seater").empty();
-        $("#2-seater").empty();
-        $("#cars-ava").text(result.length);
-        for (const car of result) {
-          $(`#${car.seater_type}-seater`).append(`
-                      <div class="row m-1">
-                          <div class="col-3">
-                              <img src="${car.car_picture}" alt="picture of ${car.company} ${car.model}" class="w-100" />
-                          </div>
-                          <div class="col-9">
-                              <div style="display: flex; justify-content: space-around">
-                                  <div style="display: flex; flex-direction: column; justify-content: center; height: 260px">
-                                      <span class="my-2" style="font-size: 20px">Car No: ${car.car_no}</span>
-                                      <span class="my-2" style="font-size: 20px">Company: ${car.company}</span>
-                                      <span class="my-2" style="font-size: 20px">Model: ${car.model}</span>
-                                      <span class="my-2" style="font-size: 20px">Daily Price: ${car.price_per_day}</span>
-                                  </div>
-                                  <div style="display: flex; flex-direction: column; justify-content: center; height: 260px">
-                                      <span class="my-2" style="font-size: 20px"><button onclick="view('${car.car_no}')" class="btn btn-primary">View</button></span>
-                                      <span class="my-2" style="font-size: 20px">Hourly Price: ${car.price_per_hour}</span>
-                                      <span class="my-2" style="font-size: 20px">Manifactured in: ${car.manifactured_year}</span>
-                                      <span class="my-2" style="font-size: 20px">Distance Driven: ${car.driven_distance}</span>
-                                  </div>
-                              </div>
-                          </div>
-                      </div>
-                  `);
-        }
+        rearrangeArray()
+        console.log(result)
       }
     },
   });
@@ -410,38 +124,114 @@ function loadCars(value) {
   });
 }
 
-function Rerender(result) {
-  $("#filteroptions").click(function () {
-    $("#6-seater").empty();
-    $("#4-seater").empty();
-    $("#2-seater").empty();
-    $("#cars-ava").text(result.length);
-    for (const car of result) {
-      $(`#${car.seater_type}-seater`).append(`
-                      <div class="row m-1">
-                          <div class="col-3">
-                              <img src="${car.car_picture}" alt="picture of ${car.company} ${car.model}" class="w-100" />
-                          </div>
-                          <div class="col-9">
-                              <div style="display: flex; justify-content: space-around">
-                                  <div style="display: flex; flex-direction: column; justify-content: center; height: 260px">
-                                      <span class="my-2" style="font-size: 20px">Car No: ${car.car_no}</span>
-                                      <span class="my-2" style="font-size: 20px">Company: ${car.company}</span>
-                                      <span class="my-2" style="font-size: 20px">Model: ${car.model}</span>
-                                      <span class="my-2" style="font-size: 20px">Daily Price: ${car.price_per_day}</span>
-                                  </div>
-                                  <div style="display: flex; flex-direction: column; justify-content: center; height: 260px">
-                                      <span class="my-2" style="font-size: 20px"><button onclick="view('${car.car_no}')" class="btn btn-primary">View</button></span>
-                                      <span class="my-2" style="font-size: 20px">Hourly Price: ${car.price_per_hour}</span>
-                                      <span class="my-2" style="font-size: 20px">Manifactured in: ${car.manifactured_year}</span>
-                                      <span class="my-2" style="font-size: 20px">Distance Driven: ${car.driven_distance}</span>
-                                  </div>
-                              </div>
-                          </div>
-                      </div>
-                  `);
+
+let filter_attributes = new Map()
+
+let card_cars = []
+let display_cars = []
+let hour_cost = 300
+
+function setHourCost(value) {
+  hour_cost = +value
+  $('.hour-cost').text(hour_cost)
+  rearrangeArray()
+}
+
+function rearrangeArray() {
+  let filters = []
+  for (const [key, val] of filter_attributes.entries()) {
+    filters.push([key, val])
+  }
+  display_cars = []
+  for (const car of card_cars) {
+    let flag = true
+    for (const i of filters) {
+      if (car[i[0]] != i[1]) {
+        flag = false
+        break
+      }
     }
-  });
+    if (flag && car.price_per_hour <= hour_cost)
+      display_cars.push(car)
+  }
+  console.log(display_cars.length)
+  $("#cars-ava").text(display_cars.length)
+  setCardCars(display_cars)
+}
+
+$('.fil-btn').click(function () {
+  let name = $(this).attr('name')
+  let [key, value] = [name, $(this).val()]
+  $(`.${key}`).css('color', '#666666')
+  $(`.${key}`).css('background-color', '#FFFFFF')
+  if (filter_attributes.has(key) && filter_attributes.get(key) == value) {
+    filter_attributes.delete(key)
+    $(this).css('color', '#666666')
+  } else {
+    filter_attributes.set(key, value)
+    $(this).css('color', 'white')
+    $(this).css('background-color', 'green')
+  }
+  console.log(filter_attributes)
+  rearrangeArray()
+})
+
+$('.sort-btn').click(function () {
+  let mult = 1, key = $(this).val()
+  if (key == 'price_per_day') {
+    mult = $(this).attr('id') == 'asc' ? 1 : -1
+  }
+  card_cars.sort((a, b) => (a[key] - b[key]) * mult)
+  rearrangeArray()
+})
+
+function setCardCars(cars) {
+  $('.card-cars').empty()
+  for (const car of cars) {
+    $('.card-cars').append(`
+      <div class="col-lg-3 col-md-5 col-10 py-5 mx-5">
+        <div class="card" class="col-12">
+          <img class="card-img-top" src="${car.car_picture}" alt="Card image cap" />
+          <div class="card-body">
+              <h5 class="card-title">Car No. ${car.car_no}</h5>
+              <div class="d-flex">
+                  <div class="col-12">
+                    <div class="d-flex">
+                      <p class="col-6">Company: </p>
+                      <p class="col-6">${car.company} ${car.model}</p>
+                    </div>
+                    <div class="d-flex">
+                      <p class="col-6">Daily cost: </p>
+                      <p class="col-6">${car.price_per_day}</p>
+                    </div>
+                    <div class="d-flex">
+                      <p class="col-6">Hourly cost: </p>
+                      <p class="col-6">${car.price_per_hour}</p>
+                    </div>
+                    <div class="d-flex">
+                      <p class="col-6">Manifactured in: </p>
+                      <p class="col-6">${car.manifactured_year}</p>
+                    </div>
+                    <div class="d-flex">
+                      <p class="col-6">Distance Driven: </p>
+                      <p class="col-6">${car.driven_distance}</p>
+                    </div>
+                    <div class="d-flex">
+                      <p class="col-6">Transmission Type: </p>
+                      <p class="col-6">${car.transmision}</p>
+                    </div>
+                    <div class="d-flex">
+                      <p class="col-6">Seater Type: </p>
+                      <p class="col-6">${car.seater_type}</p>
+                    </div>
+                  </div>
+              </div>
+              <button class="btn btn-primary">View Car</button>
+          </div>
+        </div>
+      </div>
+    `)
+  }
 }
 
 $(document).ready(function () {
