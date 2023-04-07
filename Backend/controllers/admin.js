@@ -68,6 +68,14 @@ export default function AdminController() {
             } catch (e) {
                 return { ...e, errno: 403 }
             }
+        },
+        getSomeCars: async function ({ skip, limit }) {
+            try {
+                const result = await ARSCar.find().skip(skip).limit(limit)
+                return result
+            } catch (e) {
+                return { ...e, errno: 403 }
+            }
         }
     }
 }

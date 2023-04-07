@@ -57,5 +57,14 @@ app.route('/get-all-cars')
         res.status(200).json(await adminController.getAllCars())
     })
 
+app.route('/get-some-cars')
+    .post(async (req, res) => {
+        let _v = verify(req.headers)
+        if (!_v || _v.isAdmin == undefined) {
+            res.status(400).json({ status: false })
+            return
+        }
+    })
+
 const admin = app
 export default admin
