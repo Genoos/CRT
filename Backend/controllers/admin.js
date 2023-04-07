@@ -76,6 +76,14 @@ export default function AdminController() {
             } catch (e) {
                 return { ...e, errno: 403 }
             }
+        },
+        getOneCar: async function ({ car_no }) {
+            try {
+                const result = await ARSCar.findOne({ car_no: car_no })
+                return result
+            } catch (e) {
+                return { ...e, errno: 403 }
+            }
         }
     }
 }
