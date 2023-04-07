@@ -143,6 +143,16 @@ function searchCar() {
   }
 }
 
+function searchC() {
+  console.log("search");
+  let car_no = $("#car-search-bar").val();
+  if (car_no.length == 0) {
+    $(".one-car").empty();
+    $(".one-car").hide();
+    $(".card-cars").show();
+  }
+}
+
 let filter_attributes = new Map();
 
 let card_cars = [];
