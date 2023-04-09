@@ -13,6 +13,7 @@ for (const book of car.booking) {
         <tr>
             <td>${book.from_time} / ${book.from_date}</td>
             <td>${book.to_time} / ${book.to_date}</td>
+            <td>${book.user}</td>
         </tr>
     `);
 }

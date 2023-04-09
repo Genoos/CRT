@@ -72,7 +72,7 @@ app.route("/bookcar").post(async (req, res) => {
     res.status(400).json({ errno: 400 });
     return;
   }
-  console.log(req.body);
+  console.log("user.js 75", req.body);
   let data = await userController.bookCar(req.body);
   res.status(200).json(data);
 });
