@@ -10,6 +10,7 @@ import dotenv from "dotenv"
 import http from "http"
 import CarsController from "./controllers/car.js"
 import coupon from "./routes/coupon.js"
+import payment from "./routes/payment.js"
 dotenv.config()
 
 const HOST = process.env.HOST || config.get("server.host")
@@ -32,6 +33,7 @@ app.use("/user", user)
 app.use("/car", car)
 app.use("/admin", admin)
 app.use("/coupon", coupon)
+app.use("/payment", payment)
 
 // ------------------------ socket --------------------------
 

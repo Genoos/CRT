@@ -1,5 +1,6 @@
 localStorage.removeItem("search_car");
 localStorage.removeItem("single_car");
+
 function view(car_no) {
   var c = card_cars.find((car) => car.car_no == car_no);
   if (c != undefined) {

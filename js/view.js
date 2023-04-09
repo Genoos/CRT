@@ -204,6 +204,10 @@ function onLoad({ car_no }) {
   /**
    * Ajax code here
    */
+  if (localStorage.getItem("user_data") == undefined) {
+    localStorage.clear()
+    location.href = "./login.html"
+  }
   let data = {
     car_no: car_no,
   };
@@ -252,7 +256,11 @@ function bookCar({ car_no, email, from_date, from_time, to_date, to_time }) {
     to_date: to_date,
     to_time: to_time,
     coupon_code: gcode,
-  };
+  }
+  localStorage.setItem('amount', $('#price').text().slice(1))
+  localStorage.setItem('booking_data', JSON.stringify(data))
+  location.href = './payment.html'
+  return
   $.ajax({
     type: "POST",
     url: "http://127.0.0.1:3000/user/bookcar",
