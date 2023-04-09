@@ -3,7 +3,9 @@ import UserController from "../controllers/user.js";
 import upload from "../modules/fileHandler.js";
 import jwt from "jsonwebtoken";
 import verify from "../utility/verify.jwt.js";
+import dotenv from "dotenv";
 
+dotenv.config();
 const app = express.Router();
 app.use(express.json());
 const userController = UserController();
@@ -31,23 +33,23 @@ app.route("/addCoupon").post(async (req, res) => {
   }
 });
 
-app.route("/getCoupon").get(async (req, res) => {
-  let data = await userController.getCoupon();
-  if (data) {
-    res.status(200).json(data);
-  } else {
-    res.status(200).json({ errno: 404, message: "Coupon not found" });
-  }
-});
+// app.route("/getCoupon").get(async (req, res) => {
+//   let data = await userController.getCoupon();
+//   if (data) {
+//     res.status(200).json(data);
+//   } else {
+//     res.status(200).json({ errno: 404, message: "Coupon not found" });
+//   }
+// });
 
-app.route("/updateCoupon").post(async (req, res) => {
-  let data = await userController.updateCoupon(req.body);
-  if (data) {
-    res.status(200).json(data);
-  } else {
-    res.status(200).json({ errno: 404, message: "Error in updating coupon" });
-  }
-});
+// app.route("/updateCoupon").post(async (req, res) => {
+//   let data = await userController.updateCoupon(req.body);
+//   if (data) {
+//     res.status(200).json(data);
+//   } else {
+//     res.status(200).json({ errno: 404, message: "Error in updating coupon" });
+//   }
+// });
 
 app.route("/register").post(async (req, res) => {
   let data = await userController.createUser(req.body);
